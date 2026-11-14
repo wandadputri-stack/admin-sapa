@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAPA KPU RIAU — Portal Administrasi Terpadu</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -98,7 +99,7 @@
         </div>
     </div>
 
-    <!-- VIEW UTAMA (DASHBOARD, BUKU KUNJUNGAN, PENGATURAN) -->
+    <!-- VIEW UTAMA: DASHBOARD, BUKU KUNJUNGAN, & PENGATURAN -->
     <div id="app-main-layout" class="hidden flex h-full min-h-screen">
         <!-- SIDEBAR NAVIGASI -->
         <aside id="appSidebar" class="fixed left-0 top-0 h-full w-72 bg-maroon-deep text-white shadow-2xl z-50 flex flex-col justify-between py-6 border-r border-black/45 -translate-x-full md:translate-x-0 transition-transform duration-300">
@@ -191,7 +192,7 @@
                     </div>
                 </div>
 
-                <!-- 2. DAFTAR KUNJUNGAN TAMU (BUKU LOG LENGKAP DENGAN FILTER & AKSI) -->
+                <!-- 2. DAFTAR KUNJUNGAN TAMU (BUKU LOG LENGKAP) -->
                 <div id="view-content-guestbook" class="hidden space-y-6">
                     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-outline-variant/30">
                         <div>
@@ -501,7 +502,6 @@
                 const guest = globalGuestData[idx];
                 guest.whatsapp = newVal;
                 
-                // Kirim request update ke Google Apps Script backend jika row_index tersedia
                 if (GAS_API_URL && guest.row_index) {
                     try {
                         await fetch(GAS_API_URL, {
