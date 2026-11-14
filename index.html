@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAPA KPU RIAU — Portal Administrasi Terpadu</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -14,7 +13,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: "#3f0000",
+                        primary: "#670000",
                         "maroon-base": "#670000",
                         "maroon-deep": "#3F0000",
                         "maroon-light": "#7B0E1E",
@@ -99,7 +98,7 @@
         </div>
     </div>
 
-    <!-- VIEW 2, 3, 4: DASHBOARD & APLIKASI UTAMA (DIBUNGKUS LAYOUT UTAMA) -->
+    <!-- VIEW UTAMA (DASHBOARD, BUKU KUNJUNGAN, PENGATURAN) -->
     <div id="app-main-layout" class="hidden flex h-full min-h-screen">
         <!-- SIDEBAR NAVIGASI -->
         <aside id="appSidebar" class="fixed left-0 top-0 h-full w-72 bg-maroon-deep text-white shadow-2xl z-50 flex flex-col justify-between py-6 border-r border-black/45 -translate-x-full md:translate-x-0 transition-transform duration-300">
@@ -137,14 +136,14 @@
             </div>
         </aside>
 
-        <!-- KONTEN UTAMA & HEADER -->
+        <!-- HEADER & KONTEN UTAMA -->
         <div class="pl-0 md:pl-72 flex flex-col min-h-screen w-full">
             <header class="fixed top-0 left-0 md:left-72 right-0 h-16 bg-maroon-deep text-white shadow-md z-40 flex items-center justify-between px-4 md:px-6 border-b border-white/10">
                 <div class="flex items-center gap-3">
                     <button class="md:hidden p-1.5 rounded-lg bg-white/10 text-gold-light" onclick="toggleSidebar()"><span class="material-symbols-outlined">menu</span></button>
                     <div>
                         <div class="font-bold text-sm tracking-tight leading-none">PORTAL ADMIN SAPA KPU RIAU</div>
-                        <span class="text-[11px] text-gold-light">Sistem Terintegrasi Google Spreadsheet</span>
+                        <span class="text-[11px] text-gold-light">Terintegrasi Google Spreadsheet</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
@@ -159,15 +158,14 @@
 
             <main class="w-full pt-20 p-4 md:p-8 flex-1 bg-background">
                 
-                <!-- KONTEN VIEW: DASHBOARD & STATISTIK -->
+                <!-- 1. DASHBOARD & STATISTIK -->
                 <div id="view-content-dashboard" class="space-y-6">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
                             <h2 class="text-2xl font-extrabold text-maroon-base tracking-tight">Ringkasan Statistik & Analitik</h2>
-                            <p class="text-sm text-on-surface-variant">Monitoring langsung data kunjungan real-time dari database Google Spreadsheet.</p>
+                            <p class="text-sm text-on-surface-variant">Monitoring data kunjungan real-time dari Google Spreadsheet.</p>
                         </div>
                     </div>
-                    <!-- Metric Cards -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="bg-surface-card rounded-xl p-5 shadow-xs border border-gold-accent/30 flex items-center justify-between">
                             <div>
@@ -193,75 +191,75 @@
                     </div>
                 </div>
 
-                <!-- KONTEN VIEW: DAFTAR KUNJUNGAN TAMU (BUKU LOG) -->
+                <!-- 2. DAFTAR KUNJUNGAN TAMU (BUKU LOG LENGKAP DENGAN FILTER & AKSI) -->
                 <div id="view-content-guestbook" class="hidden space-y-6">
                     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-outline-variant/30">
                         <div>
-                            <h1 class="text-2xl font-extrabold text-on-surface tracking-tight">Dftar Kunjungan Tamu</h1>
-                            <p class="text-sm text-on-surface-variant mt-1">Direktori dan log kehadiran pengunjung resmi yang tersimpan di Google Spreadsheet.</p>
+                            <h1 class="text-2xl font-extrabold text-on-surface tracking-tight">Daftar Kunjungan Tamu</h1>
+                            <p class="text-sm text-on-surface-variant mt-1">Direktori dan log kehadiran pengunjung resmi di lingkungan KPU Provinsi Riau.</p>
+                        </div>
+                        <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3.5 py-2 rounded-xl text-emerald-800 text-xs font-semibold">
+                            <span class="material-symbols-outlined text-[18px]">lock</span> Privasi Nomor WhatsApp dilindungi otomatis (Masking)
                         </div>
                     </div>
-                    <!-- Search & Filter Bar -->
-                    <div class="bg-surface-card rounded-xl p-4 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-4 border border-border-subtle">
+
+                    <!-- Filter Console -->
+                    <div class="bg-surface-card rounded-xl p-5 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-4 border border-border-subtle">
                         <div>
-                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Cari Tamu / Instansi</label>
-                            <input type="text" id="tableSearchInput" oninput="renderGuestTable()" placeholder="Ketik nama atau instansi..." class="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-border-subtle text-sm focus:outline-none focus:border-maroon-base">
+                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Cari Nama / Instansi</label>
+                            <input type="text" id="searchInput" oninput="renderGuestTable()" placeholder="Ketik kata kunci..." class="w-full px-3 py-2.5 rounded-lg bg-surface-container-low border border-border-subtle text-sm focus:outline-none focus:border-maroon-base">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Filter Kategori</label>
-                            <select id="tableCategoryFilter" onchange="renderGuestTable()" class="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-border-subtle text-sm focus:outline-none focus:border-maroon-base">
+                            <select id="kategoriFilter" onchange="renderGuestTable()" class="w-full px-3 py-2.5 rounded-lg bg-surface-container-low border border-border-subtle text-sm focus:outline-none focus:border-maroon-base">
                                 <option value="">Semua Kategori</option>
                                 <option value="Tamu Eksternal">Tamu Eksternal</option>
                                 <option value="Tamu Internal">Tamu Internal</option>
                             </select>
                         </div>
                         <div class="flex items-end">
-                            <button onclick="fetchDatabaseData()" class="w-full py-2 bg-maroon-base text-white text-xs font-bold rounded-lg hover:bg-maroon-deep transition-all shadow-sm flex items-center justify-center gap-1.5">
-                                <span class="material-symbols-outlined text-[16px]">refresh</span> Muat Ulang Database
+                            <button onclick="fetchDatabaseData()" class="w-full py-2.5 bg-maroon-base text-white text-xs font-bold rounded-lg hover:bg-maroon-deep transition-all shadow-sm flex items-center justify-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px]">refresh</span> Muat Data Spreadsheet
                             </button>
                         </div>
                     </div>
-                    <!-- Table Data Real -->
+
+                    <!-- Tabel Tamu -->
                     <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden border border-border-subtle">
                         <div class="overflow-x-auto w-full">
-                            <table class="w-full text-left border-collapse" id="guestTableReal">
+                            <table class="w-full text-left border-collapse" id="guestTable">
                                 <thead>
                                     <tr class="bg-surface-container-high text-maroon-deep text-[11px] font-bold uppercase border-b border-outline-variant/40">
                                         <th class="py-3 px-3 text-center">No</th>
                                         <th class="py-3 px-4">Waktu & Tanggal</th>
                                         <th class="py-3 px-4">Nama Tamu</th>
-                                        <th class="py-3 px-4 text-center">Foto</th>
-                                        <th class="py-3 px-4">No. WhatsApp</th>
+                                        <th class="py-3 px-4 text-center">Foto Kios</th>
+                                        <th class="py-3 px-4">Nomor WhatsApp</th>
                                         <th class="py-3 px-4">Instansi Asal</th>
                                         <th class="py-3 px-4">Kategori</th>
                                         <th class="py-3 px-4">Bagian Dituju</th>
-                                        <th class="py-3 px-4">Maksud Keperluan</th>
-                                        <th class="py-3 px-4 text-center">Aksi</th>
+                                        <th class="py-3 px-4">Maksud & Keperluan</th>
+                                        <th class="py-3 px-4 text-center">Aksi Pengelolaan</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-surface-container-high text-sm">
-                                    <!-- Data akan dimuat otomatis dari Google Spreadsheet melalui JavaScript -->
-                                    <tr>
-                                        <td colspan="10" class="text-center py-8 text-outline">Menghubungkan ke Google Spreadsheet database...</td>
-                                    </tr>
+                                    <tr><td colspan="10" class="text-center py-8 text-outline">Memuat data dari Google Spreadsheet...</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- KONTEN VIEW: PENGATURAN AKUN -->
+                <!-- 3. PENGATURAN AKUN -->
                 <div id="view-content-settings" class="hidden space-y-6 max-w-2xl">
                     <div>
                         <h2 class="text-2xl font-extrabold text-maroon-base tracking-tight">Pengaturan Akun & Keamanan</h2>
-                        <p class="text-sm text-on-surface-variant">Kelola kredensial login dan endpoint koneksi Google Spreadsheet.</p>
+                        <p class="text-sm text-on-surface-variant">Konfigurasi endpoint database Google Apps Script.</p>
                     </div>
                     <div class="bg-surface-card rounded-xl p-6 shadow-sm border border-border-subtle space-y-4">
-                        <h3 class="font-bold text-base text-on-surface">Konfigurasi Endpoint Google Apps Script</h3>
+                        <h3 class="font-bold text-base text-on-surface">URL Google Apps Script Web App</h3>
                         <div>
-                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Google Apps Script Web App URL</label>
                             <input type="text" id="gasEndpointUrl" class="w-full px-3 py-2.5 rounded-lg bg-surface-container-low border border-border-subtle text-sm font-mono" placeholder="https://script.google.com/macros/s/AKfycbzLfv94c5k-AoN0cJjaIFahP4Znvx2Ugn_NyOAhDUZy6Jl7WaQGWlSDh8tm47Fxd7Xa/exec">
-                            <span class="text-xs text-outline mt-1 block">Masukkan URL Web App dari deployment Google Apps Script Anda.</span>
                         </div>
                         <button onclick="saveEndpointConfig()" class="px-4 py-2.5 rounded-lg bg-maroon-base text-white text-xs font-bold hover:bg-maroon-deep transition-all">Simpan Konfigurasi</button>
                     </div>
@@ -271,9 +269,30 @@
         </div>
     </div>
 
-    <!-- MODAL POPUP EDIT WHATSAPP -->
+    <!-- MODAL POPUP: PRATINJAU FOTO TAMU (ZOOMABLE) -->
+    <div id="guestPhotoViewerModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-surface-card rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col border border-gold-accent/40">
+            <div class="bg-maroon-base text-white px-6 py-4 flex items-center justify-between border-b border-gold-accent/40">
+                <h3 class="font-bold text-base">Pratinjau Foto Tamu Kios</h3>
+                <button onclick="closeGuestPhotoViewer()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="p-6 flex flex-col items-center gap-4 bg-background">
+                <div class="text-sm font-bold text-primary" id="viewerGuestName">-</div>
+                <div class="relative w-full h-72 bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center">
+                    <img id="viewerPhotoImg" src="" class="max-h-full max-w-full object-contain transition-transform duration-150" alt="Foto Tamu">
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="zoomViewerPhoto(0.25)" class="px-3 py-1.5 bg-surface-card border rounded-lg text-xs font-semibold">Zoom In (+)</button>
+                    <button onclick="zoomViewerPhoto(-0.25)" class="px-3 py-1.5 bg-surface-card border rounded-lg text-xs font-semibold">Zoom Out (-)</button>
+                    <button onclick="resetViewerZoom()" class="px-3 py-1.5 bg-surface-card border rounded-lg text-xs font-semibold">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP: SUNTING NOMOR WHATSAPP -->
     <div id="editWaModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-surface-card rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+        <div class="bg-surface-card rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 border border-border-subtle">
             <h3 class="font-bold text-lg text-maroon-base">Sunting Nomor WhatsApp Tamu</h3>
             <input type="hidden" id="editWaRowIndex">
             <div>
@@ -282,22 +301,21 @@
             </div>
             <div class="flex justify-end gap-2 pt-2">
                 <button onclick="closeEditWaModal()" class="px-4 py-2 bg-surface-container text-on-surface text-xs font-semibold rounded-lg">Batal</button>
-                <button onclick="submitEditWa()" class="px-4 py-2 bg-maroon-base text-white text-xs font-bold rounded-lg">Simpan</button>
+                <button onclick="submitEditWa()" class="px-4 py-2 bg-maroon-base text-white text-xs font-bold rounded-lg">Simpan Perubahan</button>
             </div>
         </div>
     </div>
 
     <!-- JAVASCRIPT ENGINE & GOOGLE SHEETS API INTEGRATION -->
     <script>
-        // Konfigurasi Endpoint Google Apps Script (Ganti dengan URL Deployment GAS Anda)
         let GAS_API_URL = localStorage.getItem('sapa_kpu_gas_url') || "";
         let globalGuestData = [];
+        let currentPhotoZoom = 1.0;
 
         document.addEventListener("DOMContentLoaded", () => {
             if (GAS_API_URL) {
                 document.getElementById('gasEndpointUrl').value = GAS_API_URL;
             }
-            // Cek status sesi login sederhana
             if (localStorage.getItem('sapa_kpu_logged_in') === 'true') {
                 showAppMain();
             }
@@ -307,8 +325,6 @@
             e.preventDefault();
             const user = document.getElementById('loginUsername').value.trim();
             const pass = document.getElementById('loginPassword').value.trim();
-            
-            // Verifikasi sederhana admin (dapat dihubungkan ke spreadsheet tabel admin)
             if (user && pass) {
                 localStorage.setItem('sapa_kpu_logged_in', 'true');
                 showAppMain();
@@ -331,8 +347,7 @@
         }
 
         function toggleSidebar() {
-            const sb = document.getElementById('appSidebar');
-            sb.classList.toggle('-translate-x-full');
+            document.getElementById('appSidebar').classList.toggle('-translate-x-full');
         }
 
         function switchView(viewName) {
@@ -350,7 +365,6 @@
             fetchDatabaseData();
         }
 
-        // Fungsi Ambil Data dari Google Spreadsheet via Web App URL
         async function fetchDatabaseData() {
             if (!GAS_API_URL) {
                 alert('URL Google Apps Script belum diatur! Silakan atur di menu Pengaturan Akun.');
@@ -359,16 +373,19 @@
             }
 
             try {
-                const response = await fetch(GAS_API_URL);
+                const response = await fetch(GAS_API_URL + "?action=get_guests");
                 const result = await response.json();
-                if (result && result.data) {
+                if (result && result.status === "success" && result.data) {
                     globalGuestData = result.data;
+                    updateDashboardStats();
+                    renderGuestTable();
+                } else {
+                    globalGuestData = [];
                     updateDashboardStats();
                     renderGuestTable();
                 }
             } catch (error) {
                 console.error('Gagal mengambil data spreadsheet:', error);
-                // Data Mock/Fallback jika endpoint belum terhubung untuk demo awal
                 globalGuestData = [];
                 updateDashboardStats();
                 renderGuestTable();
@@ -386,18 +403,18 @@
         }
 
         function renderGuestTable() {
-            const tbody = document.querySelector('#guestTableReal tbody');
-            const search = document.getElementById('tableSearchInput').value.toLowerCase();
-            const catFilter = document.getElementById('tableCategoryFilter').value;
+            const tbody = document.querySelector('#guestTable tbody');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const catFilter = document.getElementById('kategoriFilter').value;
 
             const filtered = globalGuestData.filter(item => {
-                const matchSearch = !search || (item.nama && item.nama.toLowerCase().includes(search)) || (item.instansi && item.instansi.toLowerCase().includes(search));
+                const matchSearch = !search || (item.nama && item.nama.toLowerCase().includes(search)) || (item.instansi && item.instansi.toLowerCase().includes(search)) || (item.maksud && item.maksud.toLowerCase().includes(search));
                 const matchCat = !catFilter || item.kategori === catFilter;
                 return matchSearch && matchCat;
             });
 
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" class="text-center py-8 text-outline">Tidak ada data kunjungan ditemukan dari database real.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="10" class="text-center py-8 text-outline">Tidak ada data kunjungan ditemukan.</td></tr>`;
                 return;
             }
 
@@ -406,15 +423,20 @@
                     <td class="py-3.5 px-3 text-center font-mono text-xs text-outline">${index + 1}</td>
                     <td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">${item.waktu || '-'}</td>
                     <td class="py-3.5 px-4 font-semibold text-primary whitespace-nowrap">${item.nama || '-'}</td>
-                    <td class="py-3.5 px-4 text-center"><img src="${item.foto || 'https://via.placeholder.com/40'}" class="w-8 h-8 rounded-full object-cover mx-auto border" onerror="this.src='https://via.placeholder.com/40'"></td>
-                    <td class="py-3.5 px-4 font-mono text-xs">${maskPhone(item.whatsapp)}</td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                        ${item.foto ? `<button onclick="openPhotoViewer('${item.foto}', '${item.nama}', '${item.instansi}', '${item.waktu}')" class="p-1 rounded bg-surface-container hover:bg-surface-container-high text-maroon-base"><span class="material-symbols-outlined text-[16px]">visibility</span></button>` : '<span class="text-xs text-outline">Tanpa Foto</span>'}
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-xs">
+                        <span>${maskPhone(item.whatsapp)}</span>
+                        <button onclick="copyToClipboard('${item.whatsapp}', this)" class="ml-1 text-outline hover:text-on-surface" title="Salin"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
+                    </td>
                     <td class="py-3.5 px-4 font-medium">${item.instansi || '-'}</td>
-                    <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded-full text-xs font-semibold ${item.kategori === 'Tamu Internal' ? 'bg-slate-800 text-white' : 'bg-amber-100 text-maroon-deep'}">${item.kategori || 'Eksternal'}</span></td>
-                    <td class="py-3.5 px-4 text-xs">${item.unit || '-'}</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${item.kategori === 'Tamu Internal' ? 'bg-slate-800 text-white' : 'bg-amber-100 text-maroon-deep'}">${item.kategori || 'Eksternal'}</span></td>
+                    <td class="py-3.5 px-4 text-xs font-medium">${item.unit || '-'}</td>
                     <td class="py-3.5 px-4 text-xs max-w-xs truncate" title="${item.maksud || ''}">${item.maksud || '-'}</td>
                     <td class="py-3.5 px-4 text-center whitespace-nowrap">
                         <button onclick="openEditWaModal(${index})" class="p-1.5 rounded-lg bg-surface-card hover:bg-amber-50 text-amber-800 border border-gold-muted/40" title="Sunting WhatsApp"><span class="material-symbols-outlined text-[16px]">edit_square</span></button>
-                        <button onclick="deleteGuestRow(${index})" class="p-1.5 rounded-lg bg-red-50 text-status-error hover:bg-red-100 ml-1" title="Hapus"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+                        <button onclick="deleteGuestRow(${index}, ${item.row_index})" class="p-1.5 rounded-lg bg-red-50 text-status-error hover:bg-red-100 ml-1" title="Hapus"><span class="material-symbols-outlined text-[16px]">delete</span></button>
                     </td>
                 </tr>
             `).join('');
@@ -422,10 +444,42 @@
 
         function maskPhone(phone) {
             if (!phone) return '-';
-            if (phone.length > 8) {
-                return phone.substring(0, 4) + '-****-' + phone.substring(phone.length - 4);
+            let clean = String(phone).replace(/[^0-9]/g, '');
+            if (clean.length > 8) {
+                return clean.substring(0, 4) + '-****-' + clean.substring(clean.length - 4);
             }
             return phone;
+        }
+
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Nomor WhatsApp disalin: ' + text);
+            });
+        }
+
+        function openPhotoViewer(url, name, instansi, waktu) {
+            document.getElementById('viewerGuestName').textContent = `${name} (${instansi}) - ${waktu}`;
+            document.getElementById('viewerPhotoImg').src = url;
+            resetViewerZoom();
+            const modal = document.getElementById('guestPhotoViewerModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeGuestPhotoViewer() {
+            const modal = document.getElementById('guestPhotoViewerModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function zoomViewerPhoto(delta) {
+            currentPhotoZoom = Math.min(Math.max(0.5, currentPhotoZoom + delta), 3.0);
+            document.getElementById('viewerPhotoImg').style.transform = `scale(${currentPhotoZoom})`;
+        }
+
+        function resetViewerZoom() {
+            currentPhotoZoom = 1.0;
+            document.getElementById('viewerPhotoImg').style.transform = `scale(1)`;
         }
 
         function openEditWaModal(index) {
@@ -440,20 +494,39 @@
             document.getElementById('editWaModal').classList.remove('flex');
         }
 
-        function submitEditWa() {
+        async function submitEditWa() {
             const idx = document.getElementById('editWaRowIndex').value;
             const newVal = document.getElementById('editWaInputVal').value;
             if (idx !== '' && globalGuestData[idx]) {
-                globalGuestData[idx].whatsapp = newVal;
+                const guest = globalGuestData[idx];
+                guest.whatsapp = newVal;
+                
+                // Kirim request update ke Google Apps Script backend jika row_index tersedia
+                if (GAS_API_URL && guest.row_index) {
+                    try {
+                        await fetch(GAS_API_URL, {
+                            method: 'POST',
+                            body: JSON.stringify({ action: 'update_wa', row_index: guest.row_index, no_whatsapp: newVal })
+                        });
+                    } catch (err) { console.error(err); }
+                }
+
                 renderGuestTable();
                 closeEditWaModal();
                 alert('Nomor WhatsApp berhasil diperbarui.');
-                // Kirim update ke GAS jika diperlukan via fetch POST
             }
         }
 
-        function deleteGuestRow(index) {
-            if (confirm('Apakah Anda yakin ingin menghapus data tamu ini?')) {
+        async function deleteGuestRow(index, rowIndex) {
+            if (confirm('Apakah Anda yakin ingin menghapus data tamu ini dari sistem?')) {
+                if (GAS_API_URL && rowIndex) {
+                    try {
+                        await fetch(GAS_API_URL, {
+                            method: 'POST',
+                            body: JSON.stringify({ action: 'delete_guest', row_index: rowIndex })
+                        });
+                    } catch (err) { console.error(err); }
+                }
                 globalGuestData.splice(index, 1);
                 renderGuestTable();
                 updateDashboardStats();
