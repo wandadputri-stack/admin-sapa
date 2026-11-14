@@ -1,1544 +1,464 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="h-full">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Admin SAPA KPU RIAU — Sistem Administrasi Pelayanan Tamu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-  <style>
-    @layer base {
-      html, body { margin: 0; padding: 0; }
-      body { overscroll-behavior: none; }
-      main > :first-child { margin-top: 0 !important; }
-      main > :last-child { margin-bottom: 0 !important; }
-    }
-    ::-webkit-scrollbar { display: none; }
-    @media print {
-      aside, header, .no-print { display: none !important; }
-      .pl-72 { padding-left: 0 !important; }
-      main { padding-top: 0 !important; padding: 0 !important; }
-      #official-print-sheet { box-shadow: none !important; max-width: 100% !important; width: 100% !important; }
-    }
-  </style>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "on-tertiary-fixed": "#410100",
-            "status-error": "#B91C1C",
-            "gold-accent": "#D4AF37",
-            "primary": "#3f0000",
-            "on-primary-fixed-variant": "#891c12",
-            "outline-variant": "#e0bfba",
-            "surface-container-low": "#faf2ee",
-            "inverse-primary": "#ffb4a8",
-            "on-surface": "#1e1b19",
-            "inverse-surface": "#33302d",
-            "surface-container-highest": "#e9e1dd",
-            "surface-container-lowest": "#ffffff",
-            "on-tertiary-fixed-variant": "#7d2c21",
-            "border-subtle": "#E2E8F0",
-            "primary-fixed": "#ffdad4",
-            "surface-canvas": "#FAF8FF",
-            "error-container": "#ffdad6",
-            "status-warning": "#B45309",
-            "surface-bright": "#fff8f5",
-            "inverse-on-surface": "#f7efeb",
-            "surface": "#fff8f5",
-            "on-secondary-fixed": "#241a00",
-            "status-success": "#15803D",
-            "surface-container": "#f4ece8",
-            "tertiary-container": "#5d140c",
-            "gold-light": "#FED488",
-            "on-error": "#ffffff",
-            "error": "#ba1a1a",
-            "outline": "#8c716d",
-            "maroon-deep": "#3F0000",
-            "primary-container": "#670000",
-            "on-tertiary-container": "#e27969",
-            "surface-card": "#FFFFFF",
-            "on-error-container": "#93000a",
-            "secondary-fixed": "#ffe088",
-            "gold-muted": "#C59B27",
-            "on-secondary-container": "#745c00",
-            "on-background": "#1e1b19",
-            "tertiary": "#3f0000",
-            "on-primary-fixed": "#410000",
-            "on-secondary-fixed-variant": "#574500",
-            "maroon-base": "#670000",
-            "surface-dim": "#e0d8d5",
-            "on-primary-container": "#f66b58",
-            "on-surface-variant": "#58413e",
-            "secondary-container": "#fed65b",
-            "on-secondary": "#ffffff",
-            "secondary": "#735c00",
-            "surface-variant": "#e9e1dd",
-            "surface-container-high": "#eee7e3",
-            "maroon-light": "#7B0E1E",
-            "background": "#fff8f5",
-            "primary-fixed-dim": "#ffb4a8",
-            "tertiary-fixed": "#ffdad4",
-            "surface-tint": "#ab3527",
-            "on-tertiary": "#ffffff",
-            "on-primary": "#ffffff",
-            "tertiary-fixed-dim": "#ffb4a8",
-            "secondary-fixed-dim": "#e9c349"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-sm": "0.5rem",
-            "gutter-mobile": "1rem",
-            "space-xs": "0.25rem",
-            "margin-mobile": "1rem",
-            "gutter": "1.5rem",
-            "space-xl": "2.5rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
-            "margin": "2rem"
-          },
-          "fontFamily": {
-            "label-caps": ["Plus Jakarta Sans"],
-            "headline-lg": ["Plus Jakarta Sans"],
-            "code-mono": ["JetBrains Mono"],
-            "body-sm": ["Inter"],
-            "display-hero": ["Plus Jakarta Sans"],
-            "body-lg": ["Inter"],
-            "body-md": ["Inter"],
-            "display-hero-mobile": ["Plus Jakarta Sans"],
-            "headline-sm": ["Plus Jakarta Sans"],
-            "headline-md": ["Plus Jakarta Sans"]
-          },
-          "fontSize": {
-            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
-            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
-            "code-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
-            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
-            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
-            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-            "display-hero-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
-            "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "700" }]
-          }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPA KPU RIAU — Portal Administrasi Terpadu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3f0000",
+                        "maroon-base": "#670000",
+                        "maroon-deep": "#3F0000",
+                        "maroon-light": "#7B0E1E",
+                        "gold-accent": "#D4AF37",
+                        "gold-light": "#FED488",
+                        "gold-muted": "#C59B27",
+                        background: "#fff8f5",
+                        surface: "#fff8f5",
+                        "surface-card": "#FFFFFF",
+                        "surface-container": "#f4ece8",
+                        "surface-container-low": "#faf2ee",
+                        "surface-container-high": "#eee7e3",
+                        "on-surface": "#1e1b19",
+                        "on-surface-variant": "#58413e",
+                        outline: "#8c716d",
+                        "border-subtle": "#E2E8F0",
+                        "status-success": "#15803D",
+                        "status-error": "#B91C1C",
+                        "status-warning": "#B45309"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "code-mono": ["JetBrains Mono", "monospace"],
+                        "label-caps": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
         }
-      }
-    };
-  </script>
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #faf2ee; }
+        ::-webkit-scrollbar-thumb { background: #C59B27; border-radius: 4px; }
+    </style>
 </head>
-<body class="bg-background font-body-md text-on-surface antialiased">
+<body class="bg-background font-body-md text-on-surface antialiased h-full flex flex-col">
 
-  <!-- ===================================================================== -->
-  <!-- VIEW 0: HALAMAN LOGIN ADMIN SAPA KPU RIAU (OVERWRITE/FULLSCREEN MODE)   -->
-  <!-- ===================================================================== -->
-  <div id="view-login" class="hidden min-h-screen flex items-center justify-center p-4 bg-background">
-    <main class="w-full max-w-md">
-      <div class="flex flex-col w-full">
-        <div class="relative w-full rounded-2xl bg-surface-card shadow-xl overflow-hidden">
-          <div class="h-2 w-full bg-gradient-to-r from-maroon-deep via-primary-container to-gold-accent"></div>
-          <div class="p-6 sm:p-8 flex flex-col items-center">
-            <div class="relative mb-5 flex items-center justify-center">
-              <div class="absolute -inset-1.5 rounded-2xl bg-gold-light/30 blur-sm"></div>
-              <div class="relative w-16 h-16 rounded-xl bg-surface-container flex items-center justify-center p-2 shadow-sm">
-                <img alt="Logo Admin SAPA KPU Riau" class="w-12 h-12 object-contain" src="https://upload.wikimedia.org/wikipedia/commons/4/46/KPU_Logo.svg" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/KPU_Logo.svg/500px-KPU_Logo.svg.png';"/>
-              </div>
-            </div>
-            <div class="text-center space-y-1 mb-4">
-              <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
-                <span class="w-1.5 h-1.5 rounded-full bg-gold-accent"></span>
-                Zona Integritas WBK / WBBM
-              </span>
-              <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight pt-1">
-                PORTAL ADMIN SAPA KPU RIAU
-              </h1>
-              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed max-w-xs mx-auto">
-                Sistem Administrasi Pelayanan Tamu — Komisi Pemilihan Umum Provinsi Riau
-              </p>
-            </div>
-            <div class="w-full mb-6 p-2.5 rounded-lg bg-surface-container-low flex items-center justify-center gap-2 text-center">
-              <span class="material-symbols-outlined text-secondary font-semibold" style="font-size: 18px;">verified_user</span>
-              <span class="font-label-caps text-label-caps text-secondary uppercase">
-                Autentikasi Petugas Pengelola Buku Tamu
-              </span>
-            </div>
-            <div id="loginErrorAlert" class="hidden w-full mb-4 p-3 rounded-lg bg-error-container text-on-error-container text-xs font-medium flex items-center gap-2">
-              <span class="material-symbols-outlined text-[18px]">error</span>
-              <span id="loginErrorText">Username atau Password salah!</span>
-            </div>
-            <form class="w-full space-y-4" id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
-              <div class="space-y-1.5 text-left">
-                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider" for="adminUsername">
-                  Username Admin <span class="text-status-error">*</span>
-                </label>
-                <div class="relative flex items-center">
-                  <span class="material-symbols-outlined absolute left-3.5 text-outline pointer-events-none" style="font-size: 20px;">
-                    badge
-                  </span>
-                  <input autocomplete="username" class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-lg shadow-sm placeholder:text-outline/70 focus:outline-none focus:bg-surface-lowest transition-all" id="adminUsername" placeholder="admin_kpuriau" required="" type="text" value="admin_kpuriau"/>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-left">
-                <div class="flex items-center justify-between">
-                  <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider" for="adminPassword">
-                    Password Admin <span class="text-status-error">*</span>
-                  </label>
-                  <span class="font-code-mono text-code-mono text-outline text-[11px]">Sesi Enkripsi TLS</span>
-                </div>
-                <div class="relative flex items-center">
-                  <span class="material-symbols-outlined absolute left-3.5 text-outline pointer-events-none" style="font-size: 20px;">
-                    lock
-                  </span>
-                  <input autocomplete="current-password" class="w-full pl-11 pr-11 py-3 bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-lg shadow-sm placeholder:text-outline/70 focus:outline-none focus:bg-surface-lowest transition-all" id="adminPassword" placeholder="••••••••••••" required="" type="password" value="kpuriau2026"/>
-                  <button aria-label="Tampilkan atau sembunyikan kata sandi" class="absolute right-3 p-1 rounded-md text-outline hover:text-on-surface transition-colors focus:outline-none" id="togglePassword" onclick="toggleLoginPasswordVisibility()" type="button">
-                    <span class="material-symbols-outlined" id="eyeIcon" style="font-size: 20px;">
-                      visibility
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-1">
-                <label class="flex items-center gap-2 cursor-pointer select-none">
-                  <input checked="" class="w-4 h-4 rounded text-maroon-base accent-maroon-base bg-surface-container-highest cursor-pointer" id="rememberSession" type="checkbox"/>
-                  <span class="font-body-sm text-body-sm text-on-surface-variant">
-                    Ingat sesi di perangkat ini
-                  </span>
-                </label>
-                <a class="font-body-sm text-body-sm text-primary font-medium hover:underline" href="#" onclick="showGlobalToast('Bantuan Akses', 'Gunakan akun default admin_kpuriau / kpuriau2026 atau hubungi Subbag Tekmas & IT KPU Riau.'); return false;">
-                  Bantuan Akses
-                </a>
-              </div>
-              <button class="w-full mt-2 py-3.5 px-6 rounded-lg bg-maroon-base hover:bg-maroon-deep active:scale-[0.99] text-on-primary font-headline-sm text-headline-sm shadow-md transition-all flex items-center justify-center gap-2 group cursor-pointer" id="loginBtn" type="submit">
-                <span class="material-symbols-outlined font-normal group-hover:translate-x-0.5 transition-transform" style="font-size: 20px;">
-                  login
-                </span>
-                <span>Masuk ke Sistem Admin</span>
-              </button>
-            </form>
-            <div class="w-full mt-6 pt-5 bg-surface-container-lowest/60 rounded-xl p-3.5 flex items-start gap-3 text-left">
-              <span class="material-symbols-outlined text-secondary shrink-0 mt-0.5" style="font-size: 18px;">
-                shield
-              </span>
-              <div class="space-y-0.5">
-                <p class="font-label-caps text-label-caps text-on-surface">Pemberitahuan Sistem Keamanan</p>
-                <p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
-                  Dilindungi Sistem Keamanan Internal KPU Provinsi Riau &amp; Google Workspace Script Engine. Akses tidak sah akan dicatat ke dalam audit trail log dinas.
-                </p>
-              </div>
-            </div>
-            <div class="mt-6 flex items-center justify-center gap-4 text-outline font-label-caps text-label-caps">
-              <span>KPU PROVINSI RIAU</span>
-              <span>•</span>
-              <span>SAPA v2.4</span>
-              <span>•</span>
-              <span class="flex items-center gap-1 text-status-success font-medium">
-                <span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
-                SERVER ONLINE
-              </span>
-            </div>
-          </div>
+    <!-- VIEW 1: HALAMAN LOGIN ADMIN -->
+    <div id="view-login" class="min-h-screen w-full flex items-center justify-center p-4 bg-surface relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+            <div class="w-[600px] h-[600px] rounded-full bg-primary opacity-[0.03] blur-3xl -translate-y-12"></div>
         </div>
-      </div>
-    </main>
-  </div>
+        <div class="w-full max-w-md relative z-10">
+            <div class="bg-surface-card rounded-2xl shadow-xl overflow-hidden border border-gold-accent/30">
+                <div class="bg-gradient-to-br from-maroon-deep via-maroon-base to-maroon-light p-8 text-center relative">
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm p-2 flex items-center justify-center mb-4 shadow-md">
+                            <img alt="Logo KPU RI" class="w-16 h-20 object-contain filter drop-shadow" src="https://www.kpu.go.id/images/1627539868logo-kpu.png">
+                        </div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="font-headline-lg text-xl text-white tracking-tight font-bold">SAPA KPU RIAU</span>
+                            <span class="bg-gold-light text-maroon-deep text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">ADMIN</span>
+                        </div>
+                        <p class="text-xs text-gold-light/90 max-w-xs leading-relaxed">Sistem Administrasi Pelayanan Tamu — Komisi Pemilihan Umum Provinsi Riau</p>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8">
+                    <form class="space-y-4" onsubmit="handleLogin(event)">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1.5">Username / NIP Petugas</label>
+                            <div class="relative flex items-center">
+                                <span class="material-symbols-outlined absolute left-3.5 text-outline text-lg">badge</span>
+                                <input type="text" id="loginUsername" required class="w-full pl-11 pr-4 py-3 bg-surface-container-low border border-border-subtle rounded-lg text-sm focus:outline-none focus:border-maroon-base transition-colors" placeholder="Masukkan username admin...">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1.5">Kata Sandi</label>
+                            <div class="relative flex items-center">
+                                <span class="material-symbols-outlined absolute left-3.5 text-outline text-lg">lock</span>
+                                <input type="password" id="loginPassword" required class="w-full pl-11 pr-12 py-3 bg-surface-container-low border border-border-subtle rounded-lg text-sm focus:outline-none focus:border-maroon-base transition-colors" placeholder="••••••••••••">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-maroon-base hover:bg-maroon-deep text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all border border-gold-accent/50 cursor-pointer">
+                            <span class="material-symbols-outlined text-gold-light text-xl">login</span>
+                            <span>Masuk ke Portal Admin</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <!-- ===================================================================== -->
-  <!-- ADMIN SHELL (SIDEBAR + HEADER + SPA MAIN VIEWS)                       -->
-  <!-- ===================================================================== -->
-  <div id="admin-shell">
-    <!-- Mobile Sidebar Backdrop -->
-    <div id="mobileSidebarBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
-
-    <!-- Sidebar -->
-    <aside id="mainSidebar" class="fixed left-0 top-0 h-full w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between py-6 transform -translate-x-full lg:translate-x-0 transition-transform duration-200">
-      <div class="flex flex-col">
-        <div class="px-6 pb-6 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <img alt="Logo Admin SAPA KPU Riau" class="h-10 w-auto object-contain" src="https://upload.wikimedia.org/wikipedia/commons/4/46/KPU_Logo.svg" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/KPU_Logo.svg/500px-KPU_Logo.svg.png';"/>
+    <!-- VIEW 2, 3, 4: DASHBOARD & APLIKASI UTAMA (DIBUNGKUS LAYOUT UTAMA) -->
+    <div id="app-main-layout" class="hidden flex h-full min-h-screen">
+        <!-- SIDEBAR NAVIGASI -->
+        <aside id="appSidebar" class="fixed left-0 top-0 h-full w-72 bg-maroon-deep text-white shadow-2xl z-50 flex flex-col justify-between py-6 border-r border-black/45 -translate-x-full md:translate-x-0 transition-transform duration-300">
             <div class="flex flex-col">
-              <span class="font-headline-sm text-headline-sm text-primary leading-tight font-bold tracking-tight">SAPA KPU</span>
-              <span class="font-label-caps text-label-caps text-secondary font-bold uppercase tracking-wider">Provinsi Riau</span>
+                <div class="px-6 pb-6 flex items-center justify-between border-b border-white/10">
+                    <div class="flex items-center gap-3">
+                        <img alt="Logo KPU" class="h-10 w-auto object-contain" src="https://www.kpu.go.id/images/1627539868logo-kpu.png">
+                        <div class="flex flex-col">
+                            <span class="font-bold text-base leading-tight">SAPA KPU RIAU</span>
+                            <span class="text-[10px] text-gold-light font-bold uppercase tracking-wider">Provinsi Riau</span>
+                        </div>
+                    </div>
+                    <button class="md:hidden text-white/70 hover:text-white" onclick="toggleSidebar()"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <div class="mt-4 px-4">
+                    <div class="px-3 pb-2 text-[10px] text-white/60 font-bold uppercase tracking-wider">Menu Navigasi</div>
+                    <nav class="flex flex-col gap-1.5">
+                        <button onclick="switchView('dashboard')" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-all text-left w-full font-medium" data-target="dashboard">
+                            <span class="material-symbols-outlined text-[20px]">analytics</span><span>Dashboard & Statistik</span>
+                        </button>
+                        <button onclick="switchView('guestbook')" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-all text-left w-full font-medium" data-target="guestbook">
+                            <span class="material-symbols-outlined text-[20px]">menu_book</span><span>Daftar Kunjungan Tamu</span>
+                        </button>
+                        <button onclick="switchView('settings')" class="nav-btn flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-all text-left w-full font-medium" data-target="settings">
+                            <span class="material-symbols-outlined text-[20px]">manage_accounts</span><span>Pengaturan Akun</span>
+                        </button>
+                    </nav>
+                </div>
             </div>
-          </div>
-          <button onclick="toggleMobileSidebar()" class="lg:hidden p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high">
-            <span class="material-symbols-outlined text-[20px]">close</span>
-          </button>
-        </div>
-        <div class="px-6 py-2">
-          <div class="bg-surface-container px-3 py-2 rounded-lg flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
-            <span class="font-code-mono text-code-mono text-status-success font-medium text-xs">Online • Google Sheets</span>
-          </div>
-        </div>
-        <div class="mt-4 px-4">
-          <div class="px-3 pb-2 font-label-caps text-label-caps text-on-surface-variant font-bold uppercase tracking-wider">Menu Utama</div>
-          <nav class="flex flex-col gap-1" id="sidebarNav" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm">
-            <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-bold shadow-sm" data-path="dashboard-statistik" href="#dashboard-statistik" onclick="navigateTo('dashboard-statistik'); return false;">
-              <span class="material-symbols-outlined text-[20px]">analytics</span>
-              <span class="font-body-md text-body-md font-medium">Dashboard &amp; Statistik</span>
-            </a>
-            <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="data-tamu-buku-log" href="#data-tamu-buku-log" onclick="navigateTo('data-tamu-buku-log'); return false;">
-              <span class="material-symbols-outlined text-[20px]">menu_book</span>
-              <span class="font-body-md text-body-md font-medium">Data Tamu &amp; Buku Log</span>
-            </a>
-            <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="ekspor-unduh" href="#ekspor-unduh" onclick="navigateTo('ekspor-unduh'); return false;">
-              <span class="material-symbols-outlined text-[20px]">download</span>
-              <span class="font-body-md text-body-md font-medium">Ekspor &amp; Unduh</span>
-            </a>
-            <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="pengaturan-akun-admin" href="#pengaturan-akun-admin" onclick="navigateTo('pengaturan-akun-admin'); return false;">
-              <span class="material-symbols-outlined text-[20px]">manage_accounts</span>
-              <span class="font-body-md text-body-md font-medium">Pengaturan Akun</span>
-            </a>
-          </nav>
-        </div>
-      </div>
-      <div class="px-6 pt-4 flex flex-col gap-2">
-        <div class="bg-surface-container-highest/60 rounded-xl p-3">
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="material-symbols-outlined text-gold-muted text-[18px]">verified_user</span>
-            <span class="font-label-caps text-label-caps text-on-surface font-bold uppercase">Zona Integritas</span>
-          </div>
-          <p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">Menuju Wilayah Bebas dari Korupsi (WBK/WBBM)</p>
-        </div>
-        <div class="text-center font-body-sm text-body-sm text-outline mt-2">© 2026 KPU Provinsi Riau</div>
-      </div>
-    </aside>
+            <div class="px-6 pt-4 border-t border-white/10">
+                <div class="bg-black/20 rounded-xl p-3 border border-white/10">
+                    <div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-gold-light text-[16px]">verified_user</span><span class="text-[11px] font-bold uppercase">Zona Integritas</span></div>
+                    <p class="text-[11px] text-white/70 leading-snug">Menuju Wilayah Bebas dari Korupsi (WBK/WBBM)</p>
+                </div>
+            </div>
+        </aside>
 
-    <!-- Main Wrapper -->
-    <div class="lg:pl-72 flex flex-col min-h-screen">
-      <!-- Top Fixed Header -->
-      <header class="fixed top-0 left-0 lg:left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-4 lg:px-8">
-        <div class="flex items-center gap-3 lg:gap-4">
-          <button onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high">
-            <span class="material-symbols-outlined text-[22px]">menu</span>
-          </button>
-          <div class="flex flex-col">
-            <span class="font-headline-sm text-headline-sm text-primary font-bold">Admin SAPA KPU RIAU</span>
-            <span class="font-body-sm text-body-sm text-on-surface-variant hidden sm:inline">Sistem Administrasi Pelayanan Tamu &amp; Komunikasi Publik</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-3 lg:gap-5">
-          <div class="hidden xl:flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg">
-            <span class="material-symbols-outlined text-gold-muted text-[18px]">schedule</span>
-            <span class="font-code-mono text-code-mono text-on-surface font-medium text-xs" id="liveHeaderClock">Jumat, 13 Nov 2026 • 17:06:00 WIB</span>
-          </div>
-          <div class="h-6 w-[1px] bg-outline-variant/60 hidden xl:block"></div>
-          <div class="flex items-center gap-2.5 lg:gap-3">
-            <div class="flex flex-col items-end hidden sm:flex">
-              <span class="font-body-md text-body-md font-semibold text-on-surface leading-tight" id="headerAdminName">Administrator</span>
-              <span class="font-body-sm text-body-sm text-gold-muted font-medium">KPU Riau Core</span>
-            </div>
-            <a class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="pengaturan-akun-admin" href="#pengaturan-akun-admin" onclick="navigateTo('pengaturan-akun-admin'); return false;" title="Ganti Kredensial">
-              <span class="material-symbols-outlined text-[19px]">key</span>
-            </a>
-            <a class="w-9 h-9 rounded-lg bg-error-container/40 flex items-center justify-center text-status-error hover:bg-error-container hover:text-on-error-container transition-all" data-path="login" href="#login" onclick="logoutAdmin(); return false;" title="Keluar">
-              <span class="material-symbols-outlined text-[19px]">logout</span>
-            </a>
-            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <!-- Main Dynamic Content -->
-      <main class="w-full pt-20 lg:pt-24 px-4 lg:px-8 py-8 flex-1 bg-background">
-
-        <!-- =============================================================== -->
-        <!-- SECTION 1: DASHBOARD & STATISTIK                                -->
-        <!-- =============================================================== -->
-        <section id="page-dashboard-statistik" class="page-view flex flex-col w-full">
-          <!-- Top Bar Controls & Live Sync Indicator -->
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
-            <div class="flex flex-col">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="font-label-caps text-label-caps text-secondary font-bold uppercase tracking-wider">Ikhtisar Pelayanan Tamu</span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-status-success font-code-mono text-code-mono text-xs">
-                  <span class="w-1.5 h-1.5 rounded-full bg-status-success animate-ping"></span>
-                  Live Sync Active
-                </span>
-              </div>
-              <h1 class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">Ringkasan Statistik &amp; Analitik</h1>
-              <p class="font-body-sm text-body-sm text-on-surface-variant">Monitoring data resepsionis digital &amp; buku tamu terintegrasi KPU Provinsi Riau</p>
-            </div>
-            <!-- Quick Actions Group -->
-            <div class="flex flex-wrap items-center gap-2.5">
-              <button class="flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-all shadow-sm cursor-pointer" id="btn-refresh" onclick="refreshData()">
-                <span class="material-symbols-outlined text-[18px] text-gold-muted transition-transform duration-700" id="refresh-icon">refresh</span>
-                <span>Perbarui Data</span>
-              </button>
-              <div class="relative inline-block text-left" id="export-dropdown-wrapper">
-                <button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-highest hover:bg-surface-dim text-on-surface font-body-sm text-body-sm font-semibold transition-all shadow-sm cursor-pointer" onclick="toggleExportMenu()">
-                  <span class="material-symbols-outlined text-[18px] text-primary">download</span>
-                  <span>Unduh Rekap</span>
-                  <span class="material-symbols-outlined text-[16px]">expand_more</span>
-                </button>
-                <div class="hidden absolute right-0 mt-2 w-48 rounded-xl bg-surface-card shadow-xl p-1 z-30 border border-outline-variant/30" id="export-dropdown">
-                  <a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container text-body-sm font-body-sm font-medium transition-colors" href="#" onclick="toggleExportMenu(); navigateTo('ekspor-unduh'); triggerDownload('PDF'); return false;">
-                    <span class="material-symbols-outlined text-[18px] text-status-error">picture_as_pdf</span>
-                    <span>Format PDF Resmi</span>
-                  </a>
-                  <a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-on-surface hover:bg-surface-container text-body-sm font-body-sm font-medium transition-colors" href="#" onclick="toggleExportMenu(); triggerDownload('Excel'); return false;">
-                    <span class="material-symbols-outlined text-[18px] text-status-success">table_view</span>
-                    <span>Format Excel (.xlsx)</span>
-                  </a>
-                </div>
-              </div>
-              <a class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-body-sm text-body-sm font-semibold transition-all shadow-md" data-path="data-tamu-buku-log" href="#data-tamu-buku-log" onclick="navigateTo('data-tamu-buku-log'); return false;">
-                <span class="material-symbols-outlined text-[18px]">menu_book</span>
-                <span>Buku Log Lengkap</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Primary Metric Cards (4 KPI Cards) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <!-- Metric 1: Total Kunjungan -->
-            <div class="bg-surface-card rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <div class="absolute -right-3 -bottom-3 text-surface-container-high/40 pointer-events-none">
-                <span class="material-symbols-outlined text-[90px]">groups</span>
-              </div>
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="font-label-caps text-label-caps text-on-surface-variant font-bold uppercase tracking-wider">Kunjungan Hari Ini</span>
-                  <span class="px-2 py-0.5 rounded-full bg-status-success/15 text-status-success font-code-mono text-code-mono text-xs font-semibold flex items-center gap-0.5">
-                    <span class="material-symbols-outlined text-[14px]">trending_up</span>+12%
-                  </span>
-                </div>
-                <div class="flex items-baseline gap-2">
-                  <span class="font-headline-lg text-headline-lg font-bold text-primary transition-transform" id="kpi-total">28</span>
-                  <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Tamu Terdaftar</span>
-                </div>
-              </div>
-              <div class="mt-4 pt-3 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
-                <span>Kemarin: 25 Tamu</span>
-                <span class="text-gold-muted font-semibold">Target Lobi: Terkendali</span>
-              </div>
-            </div>
-
-            <!-- Metric 2: Tamu Eksternal -->
-            <div class="bg-surface-card rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <div class="absolute -right-3 -bottom-3 text-surface-container-high/40 pointer-events-none">
-                <span class="material-symbols-outlined text-[90px]">public</span>
-              </div>
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="font-label-caps text-label-caps text-on-surface-variant font-bold uppercase tracking-wider">Tamu Eksternal</span>
-                  <span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-code-mono text-code-mono text-xs font-semibold">
-                    67.9% Proporsi
-                  </span>
-                </div>
-                <div class="flex items-baseline gap-2">
-                  <span class="font-headline-lg text-headline-lg font-bold text-on-surface" id="kpi-eksternal">19</span>
-                  <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Entitas Luar</span>
-                </div>
-              </div>
-              <div class="mt-4 pt-3 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
-                <span>Bawaslu, Parpol, Pers, Warga</span>
-                <span class="text-status-success font-medium">Mayoritas Audiensi</span>
-              </div>
-            </div>
-
-            <!-- Metric 3: Tamu Internal -->
-            <div class="bg-surface-card rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <div class="absolute -right-3 -bottom-3 text-surface-container-high/40 pointer-events-none">
-                <span class="material-symbols-outlined text-[90px]">account_balance</span>
-              </div>
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="font-label-caps text-label-caps text-on-surface-variant font-bold uppercase tracking-wider">Tamu Internal KPU</span>
-                  <span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-code-mono text-code-mono text-xs font-semibold">
-                    32.1% Proporsi
-                  </span>
-                </div>
-                <div class="flex items-baseline gap-2">
-                  <span class="font-headline-lg text-headline-lg font-bold text-on-surface" id="kpi-internal">9</span>
-                  <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Kedinasan KPU</span>
-                </div>
-              </div>
-              <div class="mt-4 pt-3 flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
-                <span>KPU RI &amp; 12 Kab/Kota</span>
-                <span class="text-gold-muted font-medium">Konsultasi Divisi</span>
-              </div>
-            </div>
-
-            <!-- Metric 4: Verifikasi Foto -->
-            <div class="bg-surface-card rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <div class="absolute -right-3 -bottom-3 text-surface-container-high/40 pointer-events-none">
-                <span class="material-symbols-outlined text-[90px]">verified</span>
-              </div>
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="font-label-caps text-label-caps text-on-surface-variant font-bold uppercase tracking-wider">Verifikasi Foto Wajah</span>
-                  <span class="px-2 py-0.5 rounded-full bg-status-success/15 text-status-success font-code-mono text-code-mono text-xs font-bold">
-                    96.4%
-                  </span>
-                </div>
-                <div class="flex items-baseline gap-2">
-                  <span class="font-headline-lg text-headline-lg font-bold text-status-success">27</span>
-                  <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">dari 28 Tamu</span>
-                </div>
-              </div>
-              <div class="mt-4 pt-3 flex items-center justify-between font-body-sm text-body-sm">
-                <span class="text-on-surface-variant">Kamera Kiosk Lobi</span>
-                <span class="text-status-warning font-code-mono text-xs font-semibold">1 Manual ID</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Charts Bento Layout (7-Day Trend, Category Ratio) -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-            <!-- Chart 1: Tren 7 Hari Terakhir (Span 7) -->
-            <div class="lg:col-span-7 bg-surface-card rounded-xl p-6 shadow-sm flex flex-col justify-between">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
-                    <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Tren Kunjungan 7 Hari Terakhir</h2>
-                  </div>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Fluktuasi kedatangan tamu di Kantor KPU Provinsi Riau</p>
+        <!-- KONTEN UTAMA & HEADER -->
+        <div class="pl-0 md:pl-72 flex flex-col min-h-screen w-full">
+            <header class="fixed top-0 left-0 md:left-72 right-0 h-16 bg-maroon-deep text-white shadow-md z-40 flex items-center justify-between px-4 md:px-6 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <button class="md:hidden p-1.5 rounded-lg bg-white/10 text-gold-light" onclick="toggleSidebar()"><span class="material-symbols-outlined">menu</span></button>
+                    <div>
+                        <div class="font-bold text-sm tracking-tight leading-none">PORTAL ADMIN SAPA KPU RIAU</div>
+                        <span class="text-[11px] text-gold-light">Sistem Terintegrasi Google Spreadsheet</span>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3">
-                  <span class="inline-flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
-                    <span class="w-3 h-3 rounded-sm bg-primary"></span> Eksternal
-                  </span>
-                  <span class="inline-flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
-                    <span class="w-3 h-3 rounded-sm bg-gold-muted"></span> Internal
-                  </span>
-                </div>
-              </div>
-              <!-- Lightweight SVG Bar Chart -->
-              <div class="w-full h-56 pt-2">
-                <svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 540 180">
-                  <!-- Horizontal Grid Lines -->
-                  <line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3,3" stroke-width="1" x1="30" x2="520" y1="20" y2="20"></line>
-                  <line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3,3" stroke-width="1" x1="30" x2="520" y1="60" y2="60"></line>
-                  <line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3,3" stroke-width="1" x1="30" x2="520" y1="100" y2="100"></line>
-                  <line class="text-surface-container-highest" stroke="currentColor" stroke-width="1" x1="30" x2="520" y1="140" y2="140"></line>
-                  <!-- Y-Axis Value Labels -->
-                  <text class="font-code-mono text-[10px] fill-current text-on-surface-variant" text-anchor="end" x="22" y="24">30</text>
-                  <text class="font-code-mono text-[10px] fill-current text-on-surface-variant" text-anchor="end" x="22" y="64">20</text>
-                  <text class="font-code-mono text-[10px] fill-current text-on-surface-variant" text-anchor="end" x="22" y="104">10</text>
-                  <text class="font-code-mono text-[10px] fill-current text-on-surface-variant" text-anchor="end" x="22" y="144">0</text>
-                  <!-- Day 1: Sab 07 Nov (Total: 8) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan 07 Nov', 'Total 8 Tamu: 5 Eksternal, 3 Internal KPU')">
-                    <rect class="fill-current text-primary" height="32" rx="3" width="16" x="52" y="108"></rect>
-                    <rect class="fill-current text-gold-muted" height="12" rx="3" width="16" x="71" y="128"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-on-surface" text-anchor="middle" x="69" y="98">8</text>
-                    <text class="font-body-sm text-[11px] fill-current text-on-surface-variant" text-anchor="middle" x="69" y="160">07 Nov</text>
-                  </g>
-                  <!-- Day 2: Min 08 Nov (Piket: 4) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan 08 Nov', 'Total 4 Tamu Piket: 2 Eksternal, 2 Internal KPU')">
-                    <rect class="fill-current text-primary" height="12" rx="3" width="16" x="119" y="128"></rect>
-                    <rect class="fill-current text-gold-muted" height="8" rx="3" width="16" x="138" y="132"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-on-surface" text-anchor="middle" x="136" y="120">4</text>
-                    <text class="font-body-sm text-[11px] fill-current text-on-surface-variant" text-anchor="middle" x="136" y="160">08 Nov</text>
-                  </g>
-                  <!-- Day 3: Sen 09 Nov (Total: 22) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan 09 Nov', 'Total 22 Tamu: 15 Eksternal, 7 Internal KPU')">
-                    <rect class="fill-current text-primary" height="60" rx="3" width="16" x="186" y="80"></rect>
-                    <rect class="fill-current text-gold-muted" height="28" rx="3" width="16" x="205" y="112"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-on-surface" text-anchor="middle" x="203" y="70">22</text>
-                    <text class="font-body-sm text-[11px] fill-current text-on-surface-variant" text-anchor="middle" x="203" y="160">09 Nov</text>
-                  </g>
-                  <!-- Day 4: Sel 10 Nov (Total: 26) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan 10 Nov', 'Total 26 Tamu: 18 Eksternal, 8 Internal KPU')">
-                    <rect class="fill-current text-primary" height="72" rx="3" width="16" x="253" y="68"></rect>
-                    <rect class="fill-current text-gold-muted" height="36" rx="3" width="16" x="272" y="104"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-on-surface" text-anchor="middle" x="270" y="58">26</text>
-                    <text class="font-body-sm text-[11px] fill-current text-on-surface-variant" text-anchor="middle" x="270" y="160">10 Nov</text>
-                  </g>
-                  <!-- Day 5: Rab 11 Nov (Total: 31 - Peak) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan 11 Nov', 'Total 31 Tamu (Puncak): 22 Eksternal, 9 Internal KPU')">
-                    <rect class="fill-current text-primary" height="88" rx="3" width="16" x="320" y="52"></rect>
-                    <rect class="fill-current text-gold-muted" height="40" rx="3" width="16" x="339" y="100"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-primary" text-anchor="middle" x="337" y="42">31</text>
-                    <text class="font-body-sm text-[11px] fill-current text-on-surface-variant" text-anchor="middle" x="337" y="160">11 Nov</text>
-                  </g>
-                  <!-- Day 6: Kam 12 Nov (Total: 25) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan 12 Nov', 'Total 25 Tamu: 17 Eksternal, 8 Internal KPU')">
-                    <rect class="fill-current text-primary" height="68" rx="3" width="16" x="387" y="72"></rect>
-                    <rect class="fill-current text-gold-muted" height="32" rx="3" width="16" x="406" y="108"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-on-surface" text-anchor="middle" x="404" y="62">25</text>
-                    <text class="font-body-sm text-[11px] fill-current text-on-surface-variant" text-anchor="middle" x="404" y="160">12 Nov</text>
-                  </g>
-                  <!-- Day 7: Hari Ini Jum 13 Nov (Total: 28) -->
-                  <g class="transition-transform hover:opacity-85 cursor-pointer" onclick="showGlobalToast('Detail Kunjungan Hari Ini', 'Total 28 Tamu: 19 Eksternal, 9 Internal KPU')">
-                    <rect class="fill-current text-primary" height="76" rx="3" width="16" x="454" y="64"></rect>
-                    <rect class="fill-current text-gold-muted" height="36" rx="3" width="16" x="473" y="104"></rect>
-                    <text class="font-code-mono text-[10px] font-bold fill-current text-primary" text-anchor="middle" x="471" y="54">28</text>
-                    <text class="font-body-sm text-[11px] font-bold fill-current text-primary" text-anchor="middle" x="471" y="160">Hari Ini</text>
-                  </g>
-                </svg>
-              </div>
-              <div class="mt-4 pt-3 bg-surface-container-low rounded-lg px-4 py-2 flex items-center justify-between text-body-sm font-body-sm">
-                <span class="text-on-surface-variant">Rata-rata Kunjungan: <strong class="text-on-surface">20.5 Tamu / Hari</strong></span>
-                <span class="text-primary font-semibold">Puncak Kunjungan: Rabu (Audiensi Parpol)</span>
-              </div>
-            </div>
-
-            <!-- Chart 3: Proporsi Kategori Tamu (Donut Chart) (Span 5) -->
-            <div class="lg:col-span-5 bg-surface-card rounded-xl p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Kategori Tamu</h2>
-                </div>
-                <p class="font-body-sm text-body-sm text-on-surface-variant">Rasio Tamu Eksternal vs Internal KPU</p>
-              </div>
-              <div class="flex items-center justify-center py-4">
-                <div class="relative w-44 h-44">
-                  <svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
-                    <circle class="text-surface-container-high" cx="18" cy="18" fill="none" r="15.9155" stroke="currentColor" stroke-width="4.2"></circle>
-                    <circle class="text-primary" cx="18" cy="18" fill="none" r="15.9155" stroke="currentColor" stroke-dasharray="68, 100" stroke-linecap="round" stroke-width="4.2"></circle>
-                    <circle class="text-gold-muted" cx="18" cy="18" fill="none" r="15.9155" stroke="currentColor" stroke-dasharray="32, 100" stroke-dashoffset="-68" stroke-linecap="round" stroke-width="4.2"></circle>
-                  </svg>
-                  <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                    <span class="font-label-caps text-label-caps text-on-surface-variant font-bold uppercase">Total Hari Ini</span>
-                    <span class="font-headline-md text-headline-md font-bold text-primary">28</span>
-                    <span class="font-code-mono text-[11px] text-gold-muted font-medium">100% Tercatat</span>
-                  </div>
-                </div>
-              </div>
-              <div class="space-y-2 mt-2">
-                <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-3.5 h-3.5 rounded-md bg-primary"></span>
-                    <div>
-                      <span class="font-body-sm text-body-sm font-semibold text-on-surface block">Tamu Eksternal</span>
-                      <span class="font-body-sm text-[11px] text-on-surface-variant">Bawaslu, Ormas, Partai, Pers, Publik</span>
-                    </div>
-                  </div>
-                  <div class="text-right">
-                    <span class="font-headline-sm text-headline-sm font-bold text-primary">19</span>
-                    <span class="block font-code-mono text-[11px] text-on-surface-variant">67.9%</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
-                  <div class="flex items-center gap-2.5">
-                    <span class="w-3.5 h-3.5 rounded-md bg-gold-muted"></span>
-                    <div>
-                      <span class="font-body-sm text-body-sm font-semibold text-on-surface block">Tamu Internal KPU</span>
-                      <span class="font-body-sm text-[11px] text-on-surface-variant">KPU RI, KPU Kabupaten/Kota</span>
-                    </div>
-                  </div>
-                  <div class="text-right">
-                    <span class="font-headline-sm text-headline-sm font-bold text-gold-muted">9</span>
-                    <span class="block font-code-mono text-[11px] text-on-surface-variant">32.1%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Chart 2: Distribusi Kunjungan per Unit / Bagian Tujuan -->
-          <div class="bg-surface-card rounded-xl p-6 shadow-sm mb-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-gold-accent"></span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Distribusi Kunjungan per Unit / Bagian Tujuan</h2>
-                </div>
-                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Sebaran divisi dan meja layanan yang menerima tamu sepanjang hari ini</p>
-              </div>
-              <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-code-mono text-code-mono text-xs">
-                7 Unit Kerja Aktif
-              </span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-primary">person_outline</span>
-                    Ketua &amp; Anggota Komisioner
-                  </span>
-                  <span class="font-code-mono text-code-mono text-primary font-bold">7 Tamu (25.0%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 25%"></div>
-                </div>
-              </div>
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-primary">badge</span>
-                    Sekretaris KPU Provinsi Riau
-                  </span>
-                  <span class="font-code-mono text-code-mono text-primary font-bold">4 Tamu (14.3%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 14.3%"></div>
-                </div>
-              </div>
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-primary">payments</span>
-                    Bagian Keuangan, Umum, dan Logistik
-                  </span>
-                  <span class="font-code-mono text-code-mono text-primary font-bold">5 Tamu (17.8%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 17.8%"></div>
-                </div>
-              </div>
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-primary">campaign</span>
-                    Bagian Partisipasi, Humas dan Organisasi
-                  </span>
-                  <span class="font-code-mono text-code-mono text-primary font-bold">6 Tamu (21.4%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 21.4%"></div>
-                </div>
-              </div>
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-primary">gavel</span>
-                    Bagian Teknis Penyelenggaraan Pemilu dan Hukum
-                  </span>
-                  <span class="font-code-mono text-code-mono text-primary font-bold">3 Tamu (10.7%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 10.7%"></div>
-                </div>
-              </div>
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-primary">analytics</span>
-                    Bagian Perencanaan, Data dan Informasi
-                  </span>
-                  <span class="font-code-mono text-code-mono text-primary font-bold">2 Tamu (7.1%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 7.1%"></div>
-                </div>
-              </div>
-              <div class="space-y-1.5 md:col-span-2">
-                <div class="flex justify-between items-center font-body-sm text-body-sm">
-                  <span class="font-semibold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[16px] text-gold-muted">info</span>
-                    Meja Layanan PPID / Informasi Publik
-                  </span>
-                  <span class="font-code-mono text-code-mono text-gold-muted font-bold">1 Tamu (3.7%)</span>
-                </div>
-                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
-                  <div class="bg-gold-accent h-full rounded-full transition-all duration-500" style="width: 3.7%"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Recent Visitors Table (Cuplikan Kunjungan Terkini) -->
-          <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden mb-6">
-            <div class="p-6 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-primary text-[22px]">history</span>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Cuplikan Kunjungan Terkini</h2>
-                </div>
-                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Aktivitas penerimaan tamu terakhir tercatat pada sistem</p>
-              </div>
-              <a class="inline-flex items-center gap-1.5 text-primary hover:text-primary-container font-body-sm text-body-sm font-semibold transition-colors" data-path="data-tamu-buku-log" href="#data-tamu-buku-log" onclick="navigateTo('data-tamu-buku-log'); return false;">
-                <span>Buka Seluruh Tamu</span>
-                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Operational Integrity Banner -->
-          <div class="rounded-xl p-4 bg-primary text-on-primary shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-gold-accent/20 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-gold-light text-[24px]">verified</span>
-              </div>
-              <div>
-                <h3 class="font-headline-sm text-headline-sm font-bold text-on-primary">Zona Integritas Wilayah Bebas dari Korupsi (WBK)</h3>
-                <p class="font-body-sm text-body-sm text-surface-variant">Seluruh layanan penerimaan tamu di KPU Riau tidak dipungut biaya apapun (Gratis). Laporkan jika ada indikasi gratifikasi.</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 shrink-0">
-              <a class="px-4 py-2 rounded-lg bg-gold-light text-primary hover:bg-gold-accent font-body-sm text-body-sm font-bold transition-all shadow" href="https://wandadputri-stack.github.io/sapa-kpu-riau/" target="_blank">
-                Buka Kiosk Lobi Publik
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- =============================================================== -->
-        <!-- SECTION 2: DATA TAMU & BUKU LOG                                 -->
-        <!-- =============================================================== -->
-        <section id="page-data-tamu-buku-log" class="page-view hidden flex flex-col w-full">
-          <!-- Top Command & Metric Ribbon -->
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div class="bg-surface-card rounded-xl p-4 shadow-sm flex items-center justify-between">
-              <div class="flex flex-col">
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Total Buku Log</span>
-                <span class="font-headline-lg text-headline-lg text-primary font-bold mt-1">142</span>
-                <span class="font-body-sm text-body-sm text-status-success flex items-center gap-1 mt-0.5">
-                  <span class="material-symbols-outlined text-[15px]">trending_up</span>+18 kunjungan hari ini
-                </span>
-              </div>
-              <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined text-[26px]">menu_book</span>
-              </div>
-            </div>
-            <div class="bg-surface-card rounded-xl p-4 shadow-sm flex items-center justify-between">
-              <div class="flex flex-col">
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Tamu Eksternal</span>
-                <span class="font-headline-lg text-headline-lg text-maroon-base font-bold mt-1">98</span>
-                <span class="font-body-sm text-body-sm text-on-surface-variant">Bawaslu, Partai, Media, LSM</span>
-              </div>
-              <div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-maroon-deep">
-                <span class="material-symbols-outlined text-[26px]">badge</span>
-              </div>
-            </div>
-            <div class="bg-surface-card rounded-xl p-4 shadow-sm flex items-center justify-between">
-              <div class="flex flex-col">
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Tamu Internal KPU</span>
-                <span class="font-headline-lg text-headline-lg text-[#1e293b] font-bold mt-1">44</span>
-                <span class="font-body-sm text-body-sm text-on-surface-variant">KPU Kab/Kota Se-Riau</span>
-              </div>
-              <div class="w-12 h-12 rounded-xl bg-[#e2e8f0] flex items-center justify-center text-[#0f172a]">
-                <span class="material-symbols-outlined text-[26px]">corporate_fare</span>
-              </div>
-            </div>
-            <div class="bg-surface-card rounded-xl p-4 shadow-sm flex items-center justify-between">
-              <div class="flex flex-col">
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Integritas Foto Kios</span>
-                <span class="font-headline-lg text-headline-lg text-status-success font-bold mt-1">96.4%</span>
-                <span class="font-body-sm text-body-sm text-status-success flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[15px]">verified</span>137 Terverifikasi Wajah
-                </span>
-              </div>
-              <div class="w-12 h-12 rounded-xl bg-[#dcfce7] flex items-center justify-center text-status-success">
-                <span class="material-symbols-outlined text-[26px]">photo_camera_front</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Filter & Search Console -->
-          <div class="bg-surface-card rounded-xl p-5 shadow-sm mb-6 flex flex-col gap-4">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2">
-                <div class="w-2.5 h-6 bg-primary rounded-full"></div>
-                <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Pencarian &amp; Filter Integrasi</h2>
-              </div>
-              <div class="flex items-center gap-2">
-                <button class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-medium text-xs transition-all shadow-sm cursor-pointer" id="btnSyncSheet" onclick="fetchAndRenderRealData()">
-                  <span class="material-symbols-outlined text-[16px] text-primary" id="syncIcon">sync</span>
-                  <span class="font-label-caps text-label-caps uppercase">Sinkronisasi Sheet</span>
-                </button>
-                <button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-medium text-xs transition-all cursor-pointer" onclick="resetLogFilters()">
-                  <span class="material-symbols-outlined text-[16px]">restart_alt</span>
-                  <span class="font-label-caps text-label-caps uppercase">Reset Filter</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Filter Inputs Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3.5">
-              <!-- Search Input -->
-              <div class="lg:col-span-4 flex flex-col">
-                <label class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Cari Kata Kunci</label>
-                <div class="relative flex items-center">
-                  <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">search</span>
-                  <input class="w-full pl-9 pr-3 py-2.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary/20" id="searchInput" oninput="applyLogFilters()" placeholder="Nama, WhatsApp, Instansi, atau Maksud..." type="text">
-                </div>
-              </div>
-              <!-- Unit Tujuan Filter -->
-              <div class="lg:col-span-3 flex flex-col">
-                <label class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Unit Tujuan KPU</label>
-                <div class="relative">
-                  <select class="w-full py-2.5 pl-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary/20" id="unitFilter" onchange="applyLogFilters()">
-                    <option value="">Semua Unit Tujuan</option>
-                    <option value="Ketua &amp; Anggota Komisioner">Ketua &amp; Anggota Komisioner</option>
-                    <option value="Sekretaris KPU Provinsi">Sekretaris KPU Provinsi</option>
-                    <option value="Bagian Teknis &amp; Hukum">Bagian Teknis &amp; Hukum</option>
-                    <option value="Bagian Perencanaan, Data &amp; Informasi">Bagian Perencanaan, Data &amp; Informasi</option>
-                    <option value="Bagian Keuangan, Umum &amp; Logistik">Bagian Keuangan, Umum &amp; Logistik</option>
-                    <option value="Pelayanan Informasi Publik (PPID)">Pelayanan Informasi Publik (PPID)</option>
-                  </select>
-                  <span class="material-symbols-outlined absolute right-2.5 top-3 text-outline pointer-events-none text-[18px]">expand_more</span>
-                </div>
-              </div>
-              <!-- Kategori Filter -->
-              <div class="lg:col-span-2 flex flex-col">
-                <label class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Kategori Tamu</label>
-                <div class="relative">
-                  <select class="w-full py-2.5 pl-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary/20" id="kategoriFilter" onchange="applyLogFilters()">
-                    <option value="">Semua Kategori</option>
-                    <option value="Tamu Eksternal">Tamu Eksternal</option>
-                    <option value="Tamu Internal">Tamu Internal</option>
-                  </select>
-                  <span class="material-symbols-outlined absolute right-2.5 top-3 text-outline pointer-events-none text-[18px]">expand_more</span>
-                </div>
-              </div>
-              <!-- Date Range -->
-              <div class="lg:col-span-3 flex flex-col">
-                <label class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Rentang Tanggal</label>
-                <div class="flex items-center gap-1.5">
-                  <input class="w-1/2 py-2 px-2.5 rounded-lg bg-surface-container-low text-on-surface font-code-mono text-xs focus:bg-surface-card focus:outline-none" id="dateFrom" onchange="applyLogFilters()" type="date" value="2026-11-12">
-                  <span class="text-outline text-xs">s/d</span>
-                  <input class="w-1/2 py-2 px-2.5 rounded-lg bg-surface-container-low text-on-surface font-code-mono text-xs focus:bg-surface-card focus:outline-none" id="dateTo" onchange="applyLogFilters()" type="date" value="2026-11-13">
-                </div>
-              </div>
-            </div>
-
-            <!-- Active Filter Indicators -->
-            <div class="flex flex-wrap items-center gap-2 pt-2 text-xs">
-              <span class="font-label-caps text-label-caps text-outline uppercase">Filter Aktif:</span>
-              <span id="activeFilterBadge" class="bg-surface-container px-2.5 py-1 rounded-full text-on-surface font-body-sm flex items-center gap-1">
-                Semua Periode Aktif (12 - 13 Nov 2026)
-              </span>
-              <span class="bg-primary-fixed text-primary px-2.5 py-1 rounded-full font-body-sm font-semibold flex items-center gap-1">
-                Live Sync: Google Sheets
-                <span class="w-1.5 h-1.5 rounded-full bg-status-success animate-ping"></span>
-              </span>
-            </div>
-          </div>
-
-          <!-- Visitor Data Table Section (8 Canonical Fields) -->
-          <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden flex flex-col">
-            <div class="p-4 bg-surface-container-low/70 flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-[20px]">table_rows</span>
-                <span class="font-headline-sm text-headline-sm text-on-surface font-bold">Buku Registrasi Tamu Terintegrasi</span>
-                <span class="font-code-mono text-code-mono text-xs bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">8 Parameter Database</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-body-sm text-body-sm text-outline" id="filteredCountText">Menampilkan data sinkronisasi Google Sheets</span>
-              </div>
-            </div>
-            <div class="overflow-x-auto w-full">
-              <table class="w-full text-left border-collapse" id="guestTable">
-                <thead>
-                  <tr class="bg-surface-container text-on-surface-variant font-label-caps text-label-caps uppercase">
-                    <th class="py-3 px-4">1. Waktu</th>
-                    <th class="py-3 px-4">2. Nama Lengkap</th>
-                    <th class="py-3 px-4">3. No WhatsApp</th>
-                    <th class="py-3 px-4">4. Instansi Asal</th>
-                    <th class="py-3 px-4">5. Kategori</th>
-                    <th class="py-3 px-4">6. Unit Tujuan</th>
-                    <th class="py-3 px-4">7. Maksud Kunjungan</th>
-                    <th class="py-3 px-4 text-center">8. Status Foto</th>
-                    <th class="py-3 px-4 text-center">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-surface-container-high font-body-md text-body-md text-on-surface">
-                  <!-- Data akan dimuat secara dinamis dari Google Sheets via JavaScript -->
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Pagination & Summary Footer -->
-            <div class="px-6 py-4 bg-surface-container-low/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
-                <span>Sumber Data: <strong class="text-on-surface font-semibold">Google Spreadsheet Asli (SAPA KPU Riau)</strong></span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =============================================================== -->
-        <!-- SECTION 3: EKSPOR & UNDUH LAPORAN                               -->
-        <!-- =============================================================== -->
-        <section id="page-ekspor-unduh" class="page-view hidden flex flex-col w-full gap-8">
-          <!-- Top Banner / Institutional Breadcrumb Meta -->
-          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-maroon-base to-tertiary p-8 shadow-xl text-on-primary">
-            <div class="absolute -right-10 -bottom-10 w-80 h-80 rounded-full bg-gold-accent/10 blur-3xl pointer-events-none"></div>
-            <div class="absolute right-12 top-6 opacity-10 flex items-center justify-center pointer-events-none">
-              <span class="material-symbols-outlined text-[160px]">local_printshop</span>
-            </div>
-            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div class="space-y-2 max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-light/20 backdrop-blur-md border-0 text-gold-light">
-                  <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-                  <span class="font-label-caps text-label-caps tracking-widest uppercase">Zona Integritas WBK / WBBM</span>
-                  <span class="text-xs opacity-60">•</span>
-                  <span class="font-code-mono text-code-mono text-xs text-gold-light">KPU PROVINSI RIAU</span>
-                </div>
-                <h1 class="font-display-hero text-headline-lg lg:text-display-hero text-on-primary font-bold tracking-tight">
-                  Ekspor &amp; Cetak Rekapitulasi Tamu
-                </h1>
-                <p class="font-body-md text-body-md text-surface-container-high/90 max-w-2xl leading-relaxed">
-                  Unduh laporan buku tamu resmi KPU Provinsi Riau dalam berbagai format arsip digital dan cetak fisik berkop legal untuk akuntabilitas publik.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Format Selection Cards (3 Utama) -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Card 1: PDF Document -->
-            <div class="group relative bg-surface-container-lowest rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-status-error/10 text-status-error flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
-                  </div>
-                  <span class="font-code-mono text-code-mono text-xs px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-medium">
-                    .PDF SIAP CETAK
-                  </span>
-                </div>
-                <div>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
-                    Unduh Dokumen PDF (.pdf)
-                  </h2>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
-                    Format laporan siap cetak berkop resmi KPU Riau lengkap dengan watermark integritas, nomor halaman, dan kolom tanda tangan pengesahan.
-                  </p>
-                </div>
-              </div>
-              <div class="pt-6 mt-6 flex flex-col gap-2">
-                <button class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-on-primary font-body-md text-body-md font-bold hover:bg-maroon-base active:scale-[0.99] transition-all shadow-sm cursor-pointer" onclick="triggerDownload('PDF')" type="button">
-                  <span class="material-symbols-outlined text-[20px]">download</span>
-                  <span>Download PDF Resmi</span>
-                </button>
-                <button class="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-all cursor-pointer" onclick="focusPrintPreview()" type="button">
-                  <span class="material-symbols-outlined text-[18px]">visibility</span>
-                  <span>Cetak Langsung (Print Preview)</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Card 2: Excel Spreadsheet -->
-            <div class="group relative bg-surface-container-lowest rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-status-success/15 text-status-success flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">table_view</span>
-                  </div>
-                  <span class="font-code-mono text-code-mono text-xs px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-medium">
-                    .XLSX TERSTRUKTUR
-                  </span>
-                </div>
-                <div>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-status-success transition-colors">
-                    Unduh Spreadsheet Excel (.xlsx)
-                  </h2>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
-                    Format olah data lanjutan terstruktur dengan header beku (frozen pane), styling kolom otomatis, formula rekapitulasi, dan kompatibel penuh MS Excel.
-                  </p>
-                </div>
-              </div>
-              <div class="pt-6 mt-6 flex flex-col gap-2">
-                <button class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-status-success text-surface-card font-body-md text-body-md font-bold hover:brightness-95 active:scale-[0.99] transition-all shadow-sm cursor-pointer" onclick="triggerDownload('Excel')" type="button">
-                  <span class="material-symbols-outlined text-[20px]">download</span>
-                  <span>Download Excel (.xlsx)</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Card 3: CSV File -->
-            <div class="group relative bg-surface-container-lowest rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-secondary-fixed/50 text-on-secondary-container flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">data_object</span>
-                  </div>
-                  <span class="font-code-mono text-code-mono text-xs px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-medium">
-                    .CSV SINKRONISASI
-                  </span>
-                </div>
-                <div>
-                  <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
-                    Unduh Berkas CSV (.csv)
-                  </h2>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
-                    Format teks ringan pemisah koma/titik koma (UTF-8) untuk integrasi Google Sheets, sinkronisasi API pusat, atau migrasi basis data KPU.
-                  </p>
-                </div>
-              </div>
-              <div class="pt-6 mt-6 flex flex-col gap-2">
-                <button class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-surface-container-highest hover:bg-surface-dim text-on-surface font-body-md text-body-md font-bold active:scale-[0.99] transition-all cursor-pointer" onclick="triggerDownload('CSV')" type="button">
-                  <span class="material-symbols-outlined text-[20px]">file_download</span>
-                  <span>Download Berkas CSV</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- =============================================================== -->
-        <!-- SECTION 4: PENGATURAN AKUN & KEAMANAN ADMIN                     -->
-        <!-- =============================================================== -->
-        <section id="page-pengaturan-akun-admin" class="page-view hidden flex flex-col w-full">
-          <div class="mb-8">
-            <div class="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <div class="flex items-center gap-2 mb-1.5">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps">
-                    <span class="material-symbols-outlined text-[14px]">shield</span>
-                    KREDENSIAL KEAMANAN
-                  </span>
-                  <span class="font-code-mono text-code-mono text-outline text-xs">ID Sesi: #ADM-7719-RIAU</span>
-                </div>
-                <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Pengaturan Akun &amp; Keamanan Admin</h1>
-                <p class="font-body-md text-body-md text-on-surface-variant mt-1">Kelola kredensial login akun petugas dan konfigurasi integrasi Google Sheets.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2-Column Responsive Layout Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- Left Column: Admin Credentials Management (7 Cols) -->
-            <div class="lg:col-span-7 flex flex-col gap-6">
-              <!-- Card: Ganti Password Admin -->
-              <div class="bg-surface-card rounded-xl p-6 shadow-sm shadow-primary/5">
-                <div class="flex items-center gap-3 pb-4 mb-5 bg-surface-container-low -mx-6 -mt-6 p-6 rounded-t-xl">
-                  <div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[22px]">lock_reset</span>
-                  </div>
-                  <div>
-                    <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Ganti Password Admin</h2>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">Pastikan menggunakan kombinasi sandi terenkripsi yang kuat.</p>
-                  </div>
-                </div>
-                <form class="space-y-5" id="passwordForm" onsubmit="handlePasswordSubmit(event)">
-                  <div>
-                    <label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1.5" for="currPass">
-                      Password Saat Ini <span class="text-status-error">*</span>
-                    </label>
-                    <div class="relative flex items-center">
-                      <span class="absolute left-3.5 text-outline material-symbols-outlined text-[19px]">key</span>
-                      <input class="w-full pl-11 pr-11 py-3 bg-surface-container-lowest text-on-surface rounded-lg font-body-md text-body-md focus:bg-surface-bright outline-none shadow-sm transition-all focus:ring-2 focus:ring-primary/20" id="currPass" placeholder="Masukkan password sekarang" required="" type="password"/>
-                    </div>
-                  </div>
-                  <div>
-                    <label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1.5" for="newPass">
-                      Password Baru <span class="text-status-error">*</span>
-                    </label>
-                    <div class="relative flex items-center">
-                      <span class="absolute left-3.5 text-outline material-symbols-outlined text-[19px]">password</span>
-                      <input class="w-full pl-11 pr-11 py-3 bg-surface-container-lowest text-on-surface rounded-lg font-body-md text-body-md focus:bg-surface-bright outline-none shadow-sm transition-all focus:ring-2 focus:ring-primary/20" id="newPass" placeholder="Minimal 8 karakter unik" required="" type="password"/>
-                    </div>
-                  </div>
-                  <div class="pt-2 flex justify-end">
-                    <button class="px-6 py-3.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-sm font-semibold transition-all shadow-md shadow-primary/10 flex items-center gap-2 cursor-pointer" type="submit">
-                      <span class="material-symbols-outlined text-[19px]">verified_user</span>
-                      <span>Perbarui Password Admin</span>
+                    <button onclick="fetchDatabaseData()" class="px-3 py-1.5 rounded-lg bg-gold-accent/20 border border-gold-accent/40 text-gold-light hover:bg-gold-accent hover:text-maroon-deep text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer">
+                        <span class="material-symbols-outlined text-[16px]">sync</span><span>Sinkronkan Sheets</span>
                     </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-            <!-- Right Column: Google Sheets & System Info (5 Cols) -->
-            <div class="lg:col-span-5 flex flex-col gap-6">
-              <!-- Kartu Google Sheets Integration -->
-              <div class="bg-surface-card rounded-xl p-6 shadow-sm shadow-primary/5">
-                <div class="flex items-center justify-between pb-4 mb-5 bg-surface-container-low -mx-6 -mt-6 p-6 rounded-t-xl">
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-status-success/15 text-status-success flex items-center justify-center">
-                      <span class="material-symbols-outlined text-[22px]">table_chart</span>
-                    </div>
-                    <div>
-                      <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Integrasi Google Sheets</h2>
-                      <p class="font-body-sm text-body-sm text-on-surface-variant">Penyimpanan live database tamu SAPA.</p>
-                    </div>
-                  </div>
-                  <span class="px-2.5 py-1 rounded-full bg-status-success/15 text-status-success font-code-mono text-xs font-semibold flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-status-success animate-ping"></span>
-                    Aktif
-                  </span>
-                </div>
-                <div class="space-y-4">
-                  <div class="pt-2 flex flex-col gap-2">
-                    <button class="w-full py-2.5 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-md text-body-md font-semibold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer" id="btnTestConn" onclick="fetchAndRenderRealData()" type="button">
-                      <span class="material-symbols-outlined text-[18px]">sync</span>
-                      <span id="btnTestLabel">Sinkronisasi &amp; Uji Koneksi Sheet</span>
+                    <button onclick="handleLogout()" class="w-8 h-8 rounded-lg bg-red-950/60 flex items-center justify-center text-red-300 hover:bg-red-900 transition-all" title="Keluar">
+                        <span class="material-symbols-outlined text-[18px]">logout</span>
                     </button>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+            </header>
 
-      </main>
-    </div>
-  </div>
+            <main class="w-full pt-20 p-4 md:p-8 flex-1 bg-background">
+                
+                <!-- KONTEN VIEW: DASHBOARD & STATISTIK -->
+                <div id="view-content-dashboard" class="space-y-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-extrabold text-maroon-base tracking-tight">Ringkasan Statistik & Analitik</h2>
+                            <p class="text-sm text-on-surface-variant">Monitoring langsung data kunjungan real-time dari database Google Spreadsheet.</p>
+                        </div>
+                    </div>
+                    <!-- Metric Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-surface-card rounded-xl p-5 shadow-xs border border-gold-accent/30 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-on-surface-variant font-bold uppercase">Total Buku Log</span>
+                                <div class="text-3xl font-extrabold text-maroon-base mt-1" id="statTotalCount">0</div>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-maroon-base"><span class="material-symbols-outlined text-[26px]">menu_book</span></div>
+                        </div>
+                        <div class="bg-surface-card rounded-xl p-5 shadow-xs border border-gold-accent/30 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-on-surface-variant font-bold uppercase">Tamu Eksternal</span>
+                                <div class="text-3xl font-extrabold text-on-surface mt-1" id="statExtCount">0</div>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-amber-900"><span class="material-symbols-outlined text-[26px]">badge</span></div>
+                        </div>
+                        <div class="bg-surface-card rounded-xl p-5 shadow-xs border border-gold-accent/30 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-on-surface-variant font-bold uppercase">Tamu Internal KPU</span>
+                                <div class="text-3xl font-extrabold text-on-surface mt-1" id="statIntCount">0</div>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-slate-200 flex items-center justify-center text-slate-800"><span class="material-symbols-outlined text-[26px]">corporate_fare</span></div>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- ===================================================================== -->
-  <!-- MODAL 1: VERIFIKASI FOTO SELFIE & IDENTITAS TAMU                      -->
-  <!-- ===================================================================== -->
-  <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" id="photoVerifyModal">
-    <div class="bg-surface-card rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden flex flex-col transform transition-all border border-border-subtle">
-      <div class="bg-maroon-base text-on-primary px-6 py-4 flex items-center justify-between border-b border-primary-container">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-gold-light shadow-inner">
-            <span class="material-symbols-outlined text-[24px]">verified_user</span>
-          </div>
-          <div class="flex flex-col">
-            <h3 class="font-headline-sm text-headline-sm text-on-primary font-bold leading-tight">Verifikasi Foto Selfie &amp; Identitas Tamu</h3>
-            <span class="text-xs text-gold-light font-code-mono mt-0.5" id="photoModalIdBadge">#KPU-2026-084</span>
-          </div>
+                <!-- KONTEN VIEW: DAFTAR KUNJUNGAN TAMU (BUKU LOG) -->
+                <div id="view-content-guestbook" class="hidden space-y-6">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-outline-variant/30">
+                        <div>
+                            <h1 class="text-2xl font-extrabold text-on-surface tracking-tight">Dftar Kunjungan Tamu</h1>
+                            <p class="text-sm text-on-surface-variant mt-1">Direktori dan log kehadiran pengunjung resmi yang tersimpan di Google Spreadsheet.</p>
+                        </div>
+                    </div>
+                    <!-- Search & Filter Bar -->
+                    <div class="bg-surface-card rounded-xl p-4 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-4 border border-border-subtle">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Cari Tamu / Instansi</label>
+                            <input type="text" id="tableSearchInput" oninput="renderGuestTable()" placeholder="Ketik nama atau instansi..." class="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-border-subtle text-sm focus:outline-none focus:border-maroon-base">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Filter Kategori</label>
+                            <select id="tableCategoryFilter" onchange="renderGuestTable()" class="w-full px-3 py-2 rounded-lg bg-surface-container-low border border-border-subtle text-sm focus:outline-none focus:border-maroon-base">
+                                <option value="">Semua Kategori</option>
+                                <option value="Tamu Eksternal">Tamu Eksternal</option>
+                                <option value="Tamu Internal">Tamu Internal</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="fetchDatabaseData()" class="w-full py-2 bg-maroon-base text-white text-xs font-bold rounded-lg hover:bg-maroon-deep transition-all shadow-sm flex items-center justify-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px]">refresh</span> Muat Ulang Database
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Table Data Real -->
+                    <div class="bg-surface-card rounded-xl shadow-sm overflow-hidden border border-border-subtle">
+                        <div class="overflow-x-auto w-full">
+                            <table class="w-full text-left border-collapse" id="guestTableReal">
+                                <thead>
+                                    <tr class="bg-surface-container-high text-maroon-deep text-[11px] font-bold uppercase border-b border-outline-variant/40">
+                                        <th class="py-3 px-3 text-center">No</th>
+                                        <th class="py-3 px-4">Waktu & Tanggal</th>
+                                        <th class="py-3 px-4">Nama Tamu</th>
+                                        <th class="py-3 px-4 text-center">Foto</th>
+                                        <th class="py-3 px-4">No. WhatsApp</th>
+                                        <th class="py-3 px-4">Instansi Asal</th>
+                                        <th class="py-3 px-4">Kategori</th>
+                                        <th class="py-3 px-4">Bagian Dituju</th>
+                                        <th class="py-3 px-4">Maksud Keperluan</th>
+                                        <th class="py-3 px-4 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-surface-container-high text-sm">
+                                    <!-- Data akan dimuat otomatis dari Google Spreadsheet melalui JavaScript -->
+                                    <tr>
+                                        <td colspan="10" class="text-center py-8 text-outline">Menghubungkan ke Google Spreadsheet database...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KONTEN VIEW: PENGATURAN AKUN -->
+                <div id="view-content-settings" class="hidden space-y-6 max-w-2xl">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-maroon-base tracking-tight">Pengaturan Akun & Keamanan</h2>
+                        <p class="text-sm text-on-surface-variant">Kelola kredensial login dan endpoint koneksi Google Spreadsheet.</p>
+                    </div>
+                    <div class="bg-surface-card rounded-xl p-6 shadow-sm border border-border-subtle space-y-4">
+                        <h3 class="font-bold text-base text-on-surface">Konfigurasi Endpoint Google Apps Script</h3>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Google Apps Script Web App URL</label>
+                            <input type="text" id="gasEndpointUrl" class="w-full px-3 py-2.5 rounded-lg bg-surface-container-low border border-border-subtle text-sm font-mono" placeholder="https://script.google.com/macros/s/AKfycbx1eEgLSaIixTi8NbMHnXGu0u3xUDIg4lv3RICC6gU4wOvnWznKNgc7MHd7mi8ELCZ_/exec">
+                            <span class="text-xs text-outline mt-1 block">Masukkan URL Web App dari deployment Google Apps Script Anda.</span>
+                        </div>
+                        <button onclick="saveEndpointConfig()" class="px-4 py-2.5 rounded-lg bg-maroon-base text-white text-xs font-bold hover:bg-maroon-deep transition-all">Simpan Konfigurasi</button>
+                    </div>
+                </div>
+
+            </main>
         </div>
-        <button onclick="closePhotoModal()" class="w-9 h-9 rounded-lg bg-surface-container-highest/20 hover:bg-surface-container-highest/40 text-on-primary flex items-center justify-center transition-all cursor-pointer">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-      <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 max-h-[80vh] overflow-y-auto bg-background">
-        <div class="md:col-span-5 flex flex-col gap-3">
-          <div class="relative bg-surface-container-highest/40 rounded-2xl p-2.5 border border-outline-variant/60 shadow-md">
-            <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black/90 flex items-center justify-center">
-              <img id="photoVerifyImg" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&amp;auto=format&amp;fit=crop&amp;q=80" alt="Foto Selfie Verifikasi Tamu KPU Riau" class="w-full h-full object-cover object-center">
+    </div>
+
+    <!-- MODAL POPUP EDIT WHATSAPP -->
+    <div id="editWaModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-surface-card rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+            <h3 class="font-bold text-lg text-maroon-base">Sunting Nomor WhatsApp Tamu</h3>
+            <input type="hidden" id="editWaRowIndex">
+            <div>
+                <label class="block text-xs font-bold uppercase text-on-surface-variant mb-1">Nomor WhatsApp Baru</label>
+                <input type="text" id="editWaInputVal" class="w-full px-3 py-2.5 rounded-lg bg-surface-container-low border border-border-subtle text-sm font-mono">
             </div>
-          </div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="closeEditWaModal()" class="px-4 py-2 bg-surface-container text-on-surface text-xs font-semibold rounded-lg">Batal</button>
+                <button onclick="submitEditWa()" class="px-4 py-2 bg-maroon-base text-white text-xs font-bold rounded-lg">Simpan</button>
+            </div>
         </div>
-        <div class="md:col-span-7 flex flex-col gap-3.5">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            <div class="p-3 rounded-xl bg-surface-card border border-border-subtle flex flex-col gap-1">
-              <span class="font-label-caps text-[10px] text-outline uppercase font-semibold">Nama Lengkap</span>
-              <span class="font-body-md text-sm text-primary font-bold truncate" id="pvNama">-</span>
-            </div>
-            <div class="p-3 rounded-xl bg-surface-card border border-border-subtle flex flex-col gap-1">
-              <span class="font-label-caps text-[10px] text-outline uppercase font-semibold">Nomor WhatsApp</span>
-              <span class="font-code-mono text-xs text-on-surface font-bold" id="pvWa">-</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- ===================================================================== -->
-  <!-- MODAL 2: DETAIL KUNJUNGAN TAMU                                       -->
-  <!-- ===================================================================== -->
-  <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" id="guestModal">
-    <div class="bg-surface-card rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col transform transition-all">
-      <div class="bg-primary text-on-primary px-6 py-4 flex items-center justify-between">
-        <h3 class="font-headline-sm text-headline-sm text-on-primary font-bold leading-tight" id="modalGuestId">Detail Kunjungan Tamu</h3>
-        <button class="w-8 h-8 rounded-lg bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-on-primary flex items-center justify-center transition-all cursor-pointer" onclick="closeGuestModal()">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-      <div class="p-6 flex flex-col gap-6 max-h-[78vh] overflow-y-auto">
-        <h4 class="font-headline-lg text-headline-lg text-primary font-bold" id="modalNama">-</h4>
-        <p class="font-body-md text-body-md text-on-surface" id="modalInstansi">-</p>
-      </div>
-    </div>
-  </div>
+    <!-- JAVASCRIPT ENGINE & GOOGLE SHEETS API INTEGRATION -->
+    <script>
+        // Konfigurasi Endpoint Google Apps Script (Ganti dengan URL Deployment GAS Anda)
+        let GAS_API_URL = localStorage.getItem('sapa_kpu_gas_url') || "";
+        let globalGuestData = [];
 
-  <!-- ===================================================================== -->
-  <!-- GLOBAL FLOATING TOAST NOTIFICATION                                    -->
-  <!-- ===================================================================== -->
-  <div class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 flex items-center gap-3 px-5 py-3.5 rounded-xl bg-inverse-surface text-inverse-on-surface shadow-2xl max-w-md" id="global-toast">
-    <span class="material-symbols-outlined text-gold-light text-[22px]" id="global-toast-icon">check_circle</span>
-    <div class="flex flex-col">
-      <span class="font-body-md text-body-md font-bold text-sm" id="global-toast-title">Notifikasi Sistem</span>
-      <span class="font-body-sm text-body-sm text-xs opacity-85" id="global-toast-desc">Aksi berhasil diproses.</span>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- JAVASCRIPT ENGINE & GOOGLE SHEETS LIVE API INTEGRATION                -->
-  <!-- ===================================================================== -->
-  <script>
-    // 1. URL Google Apps Script Web App Anda
-    const API_URL = "https://script.google.com/macros/s/AKfycbwH4ihuwVXFVNPaYrTY-g8PY1-SMdnrYjAVSNPcAXIMcRvA-sQUvMweaBMwuXAsJ42x/exec";
-
-    // 2. Fungsi Utama untuk Menarik Data Real dari Google Spreadsheet
-    async function fetchAndRenderRealData() {
-      try {
-        showGlobalToast('Sinkronisasi', 'Menghubungkan ke Google Spreadsheet...');
-        
-        // Ambil Statistik Harian
-        const statsRes = await fetch(`${API_URL}?action=get_daily_stats`);
-        const statsResult = await statsRes.json();
-        if (statsResult.status === 'success') {
-          const kpiTotal = document.getElementById('kpi-total');
-          if (kpiTotal) kpiTotal.textContent = statsResult.todayCount;
-        }
-
-        // Ambil Seluruh Daftar Kunjungan
-        const guestsRes = await fetch(`${API_URL}?action=get_guests`);
-        const guestsResult = await guestsRes.json();
-        
-        if (guestsResult.status === 'success' && guestsResult.data) {
-          const guestList = guestsResult.data;
-          
-          let eksternalCount = 0;
-          let internalCount = 0;
-          guestList.forEach(item => {
-            const cat = (item.guest_category || item.Kategori || '').toLowerCase();
-            if (cat.includes('internal') || cat.includes('kedinasan')) {
-              internalCount++;
-            } else {
-              eksternalCount++;
+        document.addEventListener("DOMContentLoaded", () => {
+            if (GAS_API_URL) {
+                document.getElementById('gasEndpointUrl').value = GAS_API_URL;
             }
-          });
+            // Cek status sesi login sederhana
+            if (localStorage.getItem('sapa_kpu_logged_in') === 'true') {
+                showAppMain();
+            }
+        });
 
-          const kpiEksternal = document.getElementById('kpi-eksternal');
-          const kpiInternal = document.getElementById('kpi-internal');
-          if (kpiEksternal) kpiEksternal.textContent = eksternalCount;
-          if (kpiInternal) kpiInternal.textContent = internalCount;
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('loginUsername').value.trim();
+            const pass = document.getElementById('loginPassword').value.trim();
+            
+            // Verifikasi sederhana admin (dapat dihubungkan ke spreadsheet tabel admin)
+            if (user && pass) {
+                localStorage.setItem('sapa_kpu_logged_in', 'true');
+                showAppMain();
+            } else {
+                alert('Silakan masukkan username dan kata sandi dengan benar.');
+            }
+        }
 
-          // Render Tabel Buku Log Utama (#guestTable)
-          const guestTableBody = document.querySelector('#guestTable tbody');
-          if (guestTableBody) {
-            guestTableBody.innerHTML = '';
-            guestList.forEach((item, index) => {
-              const waktu = item.timestamp || item.Timestamp || '-';
-              const nama = item.nama_lengkap || item["Nama Lengkap"] || '-';
-              const wa = item.no_whatsapp || item["No WhatsApp"] || '-';
-              const instansi = item.instansi_asal || item["Instansi Asal"] || '-';
-              const kategori = item.guest_category || item.Kategori || 'Eksternal';
-              const unit = item.unit_tujuan || item["Unit Tujuan"] || '-';
-              const maksud = item.maksud_kunjungan || item.Maksud || '-';
-              const fotoStatus = item.status_foto || item["Status Foto"] || 'Terverifikasi';
-              const rowNum = item.row_number || (index + 2);
-              const imgUrl = item.foto || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop&q=80';
+        function handleLogout() {
+            localStorage.removeItem('sapa_kpu_logged_in');
+            document.getElementById('app-main-layout').classList.add('hidden');
+            document.getElementById('view-login').classList.remove('hidden');
+        }
 
-              const isInternal = kategori.toLowerCase().includes('internal');
-              const badgeClass = isInternal 
-                ? 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1e293b] text-white' 
-                : 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-tertiary-fixed text-maroon-deep';
+        function showAppMain() {
+            document.getElementById('view-login').classList.add('hidden');
+            document.getElementById('app-main-layout').classList.remove('hidden');
+            switchView('dashboard');
+            fetchDatabaseData();
+        }
 
-              const tr = document.createElement('tr');
-              tr.className = 'hover:bg-surface-container-low/60 transition-colors';
-              tr.setAttribute('data-date', String(waktu).substring(0, 10));
-              tr.setAttribute('data-foto', fotoStatus);
-              tr.setAttribute('data-id', `KPU-2026-${rowNum}`);
-              tr.setAttribute('data-img-url', imgUrl);
-              tr.setAttribute('data-instansi', instansi);
-              tr.setAttribute('data-kategori', isInternal ? 'Tamu Internal' : 'Tamu Eksternal');
-              tr.setAttribute('data-maksud', maksud);
-              tr.setAttribute('data-name', nama);
-              tr.setAttribute('data-unit', unit);
-              tr.setAttribute('data-wa', wa);
-              tr.setAttribute('data-waktu', waktu);
+        function toggleSidebar() {
+            const sb = document.getElementById('appSidebar');
+            sb.classList.toggle('-translate-x-full');
+        }
 
-              tr.innerHTML = `
-                <td class="py-3.5 px-4 font-code-mono text-code-mono text-xs text-on-surface-variant whitespace-nowrap">${waktu}</td>
-                <td class="py-3.5 px-4 font-semibold text-primary whitespace-nowrap">${nama}</td>
-                <td class="py-3.5 px-4 whitespace-nowrap">
-                  <div class="flex items-center gap-1.5">
-                    <span class="font-code-mono text-code-mono text-xs">${wa}</span>
-                    <button class="p-1 rounded hover:bg-surface-container text-outline hover:text-on-surface transition-all cursor-pointer" onclick="copyToClipboard('${wa}', this)" title="Salin Nomor">
-                      <span class="material-symbols-outlined text-[15px]">content_copy</span>
-                    </button>
-                    <a class="p-1 rounded bg-[#dcfce7] text-status-success hover:bg-[#bbf7d0] transition-all" href="https://wa.me/62${String(wa).replace(/^0/, '')}" target="_blank" title="Kirim Pesan WhatsApp">
-                      <span class="material-symbols-outlined text-[15px]">chat</span>
-                    </a>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 font-medium text-on-surface whitespace-nowrap">${instansi}</td>
-                <td class="py-3.5 px-4 whitespace-nowrap"><span class="${badgeClass}">${isInternal ? 'Tamu Internal' : 'Tamu Eksternal'}</span></td>
-                <td class="py-3.5 px-4 text-xs font-medium text-on-surface-variant whitespace-nowrap">${unit}</td>
-                <td class="py-3.5 px-4 max-w-xs truncate text-xs" title="${maksud}">${maksud}</td>
-                <td class="py-3.5 px-4 text-center whitespace-nowrap">
-                  <button onclick="openPhotoModalFromRow(this)" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#dcfce7] text-status-success hover:bg-[#bbf7d0] transition-all cursor-pointer shadow-xs border border-status-success/20">
-                    <span class="material-symbols-outlined text-[15px]">photo_camera_front</span>
-                    <span>${fotoStatus || 'Terverifikasi'}</span>
-                  </button>
-                </td>
-                <td class="py-3.5 px-4 text-center whitespace-nowrap">
-                  <button class="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-semibold text-xs flex items-center gap-1 shadow-sm mx-auto transition-all cursor-pointer" onclick="openGuestDetail(this)">
-                    <span class="material-symbols-outlined text-[15px]">visibility</span> Lihat Detail
-                  </button>
-                </td>
-              `;
-              guestTableBody.appendChild(tr);
+        function switchView(viewName) {
+            ['dashboard', 'guestbook', 'settings'].forEach(v => {
+                document.getElementById(`view-content-${v}`).classList.add('hidden');
             });
-          }
-
-          showGlobalToast('Sinkronisasi Berhasil', `Berhasil memuat ${guestList.length} data kunjungan dari Google Sheets.`);
+            document.getElementById(`view-content-${viewName}`).classList.remove('hidden');
         }
-      } catch (error) {
-        console.error("Gagal menarik data dari Google Sheets:", error);
-        showGlobalToast('Gagal Sinkronisasi', 'Periksa koneksi internet atau deployment Apps Script.', true);
-      }
-    }
 
-    // Panggil saat halaman pertama kali dimuat
-    window.addEventListener('DOMContentLoaded', () => {
-      fetchAndRenderRealData();
-    });
-
-    // 3. Live Clock & General UI Helpers
-    function updateLiveClock() {
-      const clockEl = document.getElementById('liveHeaderClock');
-      if (!clockEl) return;
-      const now = new Date();
-      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-      clockEl.textContent = `${days[now.getDay()]}, ${String(now.getDate()).padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear()} • ${now.toTimeString().split(' ')[0]} WIB`;
-    }
-    setInterval(updateLiveClock, 1000);
-    updateLiveClock();
-
-    let toastTimer = null;
-    function showGlobalToast(title, desc, isError = false) {
-      const toast = document.getElementById('global-toast');
-      const tTitle = document.getElementById('global-toast-title');
-      const tDesc = document.getElementById('global-toast-desc');
-      const tIcon = document.getElementById('global-toast-icon');
-
-      tTitle.textContent = title;
-      tDesc.textContent = desc;
-      tIcon.textContent = isError ? 'error' : 'check_circle';
-      tIcon.className = isError ? 'material-symbols-outlined text-status-error text-[22px]' : 'material-symbols-outlined text-gold-light text-[22px]';
-
-      toast.classList.remove('translate-y-32', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-
-      if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-32', 'opacity-0');
-      }, 3500);
-    }
-
-    const VALID_PAGES = ['dashboard-statistik', 'data-tamu-buku-log', 'ekspor-unduh', 'pengaturan-akun-admin'];
-
-    function navigateTo(route) {
-      const loginView = document.getElementById('view-login');
-      const adminShell = document.getElementById('admin-shell');
-
-      if (route === 'login') {
-        adminShell.classList.add('hidden');
-        loginView.classList.remove('hidden');
-        loginView.classList.add('flex');
-        window.location.hash = 'login';
-        return;
-      }
-
-      const targetRoute = VALID_PAGES.includes(route) ? route : 'dashboard-statistik';
-      loginView.classList.add('hidden');
-      loginView.classList.remove('flex');
-      adminShell.classList.remove('hidden');
-
-      document.querySelectorAll('.page-view').forEach(sec => sec.classList.add('hidden'));
-      const activeSection = document.getElementById('page-' + targetRoute);
-      if (activeSection) activeSection.classList.remove('hidden');
-
-      document.querySelectorAll('#sidebarNav .nav-item').forEach(link => {
-        if (link.getAttribute('data-path') === targetRoute) {
-          link.className = 'nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all bg-primary-container text-on-primary font-bold shadow-sm';
-        } else {
-          link.className = 'nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all';
+        function saveEndpointConfig() {
+            const url = document.getElementById('gasEndpointUrl').value.trim();
+            localStorage.setItem('sapa_kpu_gas_url', url);
+            GAS_API_URL = url;
+            alert('Konfigurasi URL Google Apps Script berhasil disimpan!');
+            fetchDatabaseData();
         }
-      });
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.location.hash = targetRoute;
-    }
+        // Fungsi Ambil Data dari Google Spreadsheet via Web App URL
+        async function fetchDatabaseData() {
+            if (!GAS_API_URL) {
+                alert('URL Google Apps Script belum diatur! Silakan atur di menu Pengaturan Akun.');
+                switchView('settings');
+                return;
+            }
 
-    function toggleMobileSidebar() {
-      document.getElementById('mainSidebar').classList.toggle('-translate-x-full');
-      document.getElementById('mobileSidebarBackdrop').classList.toggle('hidden');
-    }
+            try {
+                const response = await fetch(GAS_API_URL);
+                const result = await response.json();
+                if (result && result.data) {
+                    globalGuestData = result.data;
+                    updateDashboardStats();
+                    renderGuestTable();
+                }
+            } catch (error) {
+                console.error('Gagal mengambil data spreadsheet:', error);
+                // Data Mock/Fallback jika endpoint belum terhubung untuk demo awal
+                globalGuestData = [];
+                updateDashboardStats();
+                renderGuestTable();
+            }
+        }
 
-    function logoutAdmin() {
-      sessionStorage.removeItem('sapa_kpu_auth');
-      navigateTo('login');
-      showGlobalToast('Sesi Berakhir', 'Anda telah keluar dari Portal Admin.');
-    }
+        function updateDashboardStats() {
+            const total = globalGuestData.length;
+            const ext = globalGuestData.filter(item => item.kategori === 'Tamu Eksternal').length;
+            const int = globalGuestData.filter(item => item.kategori === 'Tamu Internal').length;
 
-    function toggleLoginPasswordVisibility() {
-      const p = document.getElementById('adminPassword');
-      const icon = document.getElementById('eyeIcon');
-      if (p.type === 'password') {
-        p.type = 'text';
-        icon.textContent = 'visibility_off';
-      } else {
-        p.type = 'password';
-        icon.textContent = 'visibility';
-      }
-    }
+            document.getElementById('statTotalCount').textContent = total;
+            document.getElementById('statExtCount').textContent = ext;
+            document.getElementById('statIntCount').textContent = int;
+        }
 
-    function handleLogin() {
-      sessionStorage.setItem('sapa_kpu_auth', 'true');
-      navigateTo('dashboard-statistik');
-      showGlobalToast('Selamat Datang', 'Berhasil masuk ke Portal Admin SAPA KPU Riau.');
-    }
+        function renderGuestTable() {
+            const tbody = document.querySelector('#guestTableReal tbody');
+            const search = document.getElementById('tableSearchInput').value.toLowerCase();
+            const catFilter = document.getElementById('tableCategoryFilter').value;
 
-    function refreshData() {
-      fetchAndRenderRealData();
-    }
+            const filtered = globalGuestData.filter(item => {
+                const matchSearch = !search || (item.nama && item.nama.toLowerCase().includes(search)) || (item.instansi && item.instansi.toLowerCase().includes(search));
+                const matchCat = !catFilter || item.kategori === catFilter;
+                return matchSearch && matchCat;
+            });
 
-    function toggleExportMenu() {
-      document.getElementById('export-dropdown').classList.toggle('hidden');
-    }
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" class="text-center py-8 text-outline">Tidak ada data kunjungan ditemukan dari database real.</td></tr>`;
+                return;
+            }
 
-    function openPhotoModalFromRow(btn) {
-      const row = btn.closest('tr');
-      if (!row) return;
-      document.getElementById('photoModalIdBadge').textContent = '#' + row.getAttribute('data-id');
-      document.getElementById('pvNama').textContent = row.getAttribute('data-name');
-      document.getElementById('pvWa').textContent = row.getAttribute('data-wa');
-      document.getElementById('photoVerifyImg').src = row.getAttribute('data-img-url');
-      const m = document.getElementById('photoVerifyModal');
-      m.classList.remove('hidden');
-      m.classList.add('flex');
-    }
+            tbody.innerHTML = filtered.map((item, index) => `
+                <tr class="hover:bg-surface-container-low/60 transition-colors">
+                    <td class="py-3.5 px-3 text-center font-mono text-xs text-outline">${index + 1}</td>
+                    <td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant whitespace-nowrap">${item.waktu || '-'}</td>
+                    <td class="py-3.5 px-4 font-semibold text-primary whitespace-nowrap">${item.nama || '-'}</td>
+                    <td class="py-3.5 px-4 text-center"><img src="${item.foto || 'https://via.placeholder.com/40'}" class="w-8 h-8 rounded-full object-cover mx-auto border" onerror="this.src='https://via.placeholder.com/40'"></td>
+                    <td class="py-3.5 px-4 font-mono text-xs">${maskPhone(item.whatsapp)}</td>
+                    <td class="py-3.5 px-4 font-medium">${item.instansi || '-'}</td>
+                    <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded-full text-xs font-semibold ${item.kategori === 'Tamu Internal' ? 'bg-slate-800 text-white' : 'bg-amber-100 text-maroon-deep'}">${item.kategori || 'Eksternal'}</span></td>
+                    <td class="py-3.5 px-4 text-xs">${item.unit || '-'}</td>
+                    <td class="py-3.5 px-4 text-xs max-w-xs truncate" title="${item.maksud || ''}">${item.maksud || '-'}</td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                        <button onclick="openEditWaModal(${index})" class="p-1.5 rounded-lg bg-surface-card hover:bg-amber-50 text-amber-800 border border-gold-muted/40" title="Sunting WhatsApp"><span class="material-symbols-outlined text-[16px]">edit_square</span></button>
+                        <button onclick="deleteGuestRow(${index})" class="p-1.5 rounded-lg bg-red-50 text-status-error hover:bg-red-100 ml-1" title="Hapus"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
 
-    function closePhotoModal() {
-      document.getElementById('photoVerifyModal').classList.add('hidden');
-      document.getElementById('photoVerifyModal').classList.remove('flex');
-    }
+        function maskPhone(phone) {
+            if (!phone) return '-';
+            if (phone.length > 8) {
+                return phone.substring(0, 4) + '-****-' + phone.substring(phone.length - 4);
+            }
+            return phone;
+        }
 
-    function openGuestDetail(btn) {
-      const row = btn.closest('tr');
-      if (!row) return;
-      document.getElementById('modalGuestId').textContent = 'Detail Kunjungan #' + row.getAttribute('data-id');
-      document.getElementById('modalNama').textContent = row.getAttribute('data-name');
-      document.getElementById('modalInstansi').textContent = row.getAttribute('data-instansi');
-      const m = document.getElementById('guestModal');
-      m.classList.remove('hidden');
-      m.classList.add('flex');
-    }
+        function openEditWaModal(index) {
+            document.getElementById('editWaRowIndex').value = index;
+            document.getElementById('editWaInputVal').value = globalGuestData[index].whatsapp || '';
+            document.getElementById('editWaModal').classList.remove('hidden');
+            document.getElementById('editWaModal').classList.add('flex');
+        }
 
-    function closeGuestModal() {
-      document.getElementById('guestModal').classList.add('hidden');
-      document.getElementById('guestModal').classList.remove('flex');
-    }
+        function closeEditWaModal() {
+            document.getElementById('editWaModal').classList.add('hidden');
+            document.getElementById('editWaModal').classList.remove('flex');
+        }
 
-    function copyToClipboard(text, btn) {
-      navigator.clipboard.writeText(text).then(() => {
-        showGlobalToast('Disalin', `Nomor ${text} disalin ke clipboard.`);
-      });
-    }
+        function submitEditWa() {
+            const idx = document.getElementById('editWaRowIndex').value;
+            const newVal = document.getElementById('editWaInputVal').value;
+            if (idx !== '' && globalGuestData[idx]) {
+                globalGuestData[idx].whatsapp = newVal;
+                renderGuestTable();
+                closeEditWaModal();
+                alert('Nomor WhatsApp berhasil diperbarui.');
+                // Kirim update ke GAS jika diperlukan via fetch POST
+            }
+        }
 
-    function triggerDownload(format) {
-      showGlobalToast(`Ekspor ${format}`, `Menyiapkan berkas ${format} dari Google Spreadsheet...`);
-    }
-
-    function applyLogFilters() {
-      const val = document.getElementById('searchInput').value.toLowerCase();
-      document.querySelectorAll('#guestTable tbody tr').forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(val) ? '' : 'none';
-      });
-    }
-
-    function resetLogFilters() {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('unitFilter').value = '';
-      document.getElementById('kategoriFilter').value = '';
-      applyLogFilters();
-    }
-
-    function handlePasswordSubmit(e) {
-      e.preventDefault();
-      showGlobalToast('Berhasil', 'Password admin berhasil diperbarui.');
-    }
-  </script>
+        function deleteGuestRow(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus data tamu ini?')) {
+                globalGuestData.splice(index, 1);
+                renderGuestTable();
+                updateDashboardStats();
+            }
+        }
+    </script>
 </body>
 </html>
