@@ -550,6 +550,19 @@
             refreshAllData(false);
             navigateTo('login');
         });
+
+        function togglePasswordVisibilityLogin() {
+        const pwd = document.getElementById('passwordInput');
+        const eye = document.getElementById('eyeIconLogin');
+        if (!pwd || !eye) return;
+        if (pwd.type === 'password') {
+            pwd.type = 'text';
+            eye.textContent = 'visibility_off';
+        } else {
+            pwd.type = 'password';
+            eye.textContent = 'visibility';
+    }
+}
     </script>
 </body>
 </html>
