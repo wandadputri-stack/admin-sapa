@@ -1058,7 +1058,7 @@
         // Isi dengan URL Web App GAS Anda (berakhir /exec) jika dihosting di luar GAS (mis. GitHub Pages)
         // Kosongkan ("") jika file ini dijalankan langsung melalui HtmlService Google Apps Script
         // ==========================================
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzLfv94c5k-AoN0cJjaIFahP4Znvx2Ugn_NyOAhDUZy6Jl7WaQGWlSDh8tm47Fxd7Xa/exec";
+        const GAS_WEB_APP_URL = localStorage.getItem("sapa_kpu_riau_gas_url_v1") || "https://script.google.com/macros/s/AKfycbzLfv94c5k-AoN0cJjaIFahP4Znvx2Ugn_NyOAhDUZy6Jl7WaQGWlSDh8tm47Fxd7Xa/exec";
 
         // ==========================================
         // 1. REAL-TIME DATABASE SERVICE LAYER
