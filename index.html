@@ -2253,6 +2253,64 @@
             closeTerminateModal();
             showToast('Semua sesi perangkat lain berhasil diputuskan.', 'power_settings_new');
         }
+
+        // Normalisasi format baris dari Code.gs (mendukung skema lama maupun baru)
+            normalizeGuestRecord(item, index) {
+                const rawWaktu = item.waktu || item.timestamp || '';
+                let tanggalStr = item.tanggal || '';
+                let waktuStr = rawWaktu;
+                let tanggalIso = item.tanggalIso || '';
+
+                if (rawWaktu && String(rawWaktu).includes(' ')) {
+                    const parts = String(rawWaktu).split(' ');
+                    tanggalIso = parts[0];
+                    waktuStr = parts[1] + ' WIB';
+                    const dParts = parts[0].split('-');
+                    if (dParts.length === 3) {
+                        tanggalStr = `${dParts[2]}/${dParts[1]}/${dParts[0]}`;
+                    }
+                } else if (rawWaktu) {
+                    const parsed = new Date(rawWaktu);
+                    if (!isNaN(parsed.getTime())) {
+                        const y = parsed.getFullYear();
+                        const m = String(parsed.getMonth() + 1).padStart(2, '0');
+                        const d = String(parsed.getDate()).padStart(2, '0');
+                        const hh = String(parsed.getHours()).padStart(2, '0');
+                        const mm = String(parsed.getMinutes()).padStart(2, '0');
+                        const ss = String(parsed.getSeconds()).padStart(2, '0');
+                        tanggalIso = `${y}-${m}-${d}`;
+                        tanggalStr = `${d}/${m}/${y}`;
+                        waktuStr = `${hh}:${mm}:${ss} WIB`;
+                    }
+                }
+
+                const rawCat = String(item.kategori || item.guest_category || 'Tamu Eksternal');
+                const normalizedCat = rawCat.toLowerCase().includes('internal') ? 'Tamu Internal' : 'Tamu Eksternal';
+
+                // ==========================================
+                // SANITASI FOTO: Cegah error 404 CellImage
+                // ==========================================
+                let rawFoto = String(item.foto || item.fotoUrl || '').trim();
+                if (rawFoto === 'CellImage' || rawFoto.toLowerCase().includes('cellimage') || (!rawFoto.startsWith('http') && !rawFoto.startsWith('data:image'))) {
+                    rawFoto = ''; // Jika bukan link http/https atau base64 valid, kosongkan aman dari error 404
+                }
+
+                return {
+                    id: item.row_index || item.id || (index + 2),
+                    row_index: item.row_index || item.id || (index + 2),
+                    timestamp: rawWaktu,
+                    tanggalIso: tanggalIso,
+                    tanggal: tanggalStr,
+                    waktu: waktuStr,
+                    nama: item.nama || item.nama_lengkap || '',
+                    wa: String(item.whatsapp || item.no_whatsapp || item.wa || ''),
+                    instansi: item.instansi || item.instansi_asal || '',
+                    kategori: normalizedCat,
+                    unit: item.unit || item.unit_tujuan || '',
+                    maksud: item.maksud || item.maksud_kunjungan || '',
+                    fotoUrl: rawFoto // Menggunakan hasil sanitasi yang aman
+                };
+            },
     </script>
 </body>
 </html>
